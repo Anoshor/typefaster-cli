@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     countdown_seconds: int = 3
     max_players_per_lobby: int = 8
 
+    # OAuth device-flow login (all free). Empty => that provider is disabled.
+    github_client_id: str = ""
+    google_client_id: str = ""
+    google_client_secret: str = ""  # Google device flow requires the secret
+
 
 def get_settings() -> Settings:
     return Settings()

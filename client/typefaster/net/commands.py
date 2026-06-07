@@ -6,7 +6,10 @@ The online race UI is launched via the Textual app.
 
 from __future__ import annotations
 
+import contextlib
 import getpass
+import time
+import webbrowser
 
 import typer
 from rich.console import Console
@@ -46,8 +49,18 @@ def register(
         client.close()
 
 
-def login(username: str = typer.Argument(..., help="Your username.")) -> None:
-    """Log in to the server."""
+def login(
+    username: str | None = typer.Argument(None, help="Your username (password login)."),
+    github: bool = typer.Option(False, "--github", help="Log in with GitHub (browser)."),
+    google: bool = typer.Option(False, "--google", help="Log in with Google (browser)."),
+) -> None:
+    """Log in to the server (password, or --github / --google)."""
+    if github or google:
+        _oauth_login("github" if github else "google")
+        return
+    if not username:
+        console.print("[red]Provide a username, or use[/] --github / --google.")
+        raise typer.Exit(1)
     password = getpass.getpass("Password: ")
     client, session = _client()
     try:
@@ -59,6 +72,54 @@ def login(username: str = typer.Argument(..., help="Your username.")) -> None:
     except ApiError as exc:
         console.print(f"[red]Login failed:[/] {exc.detail}")
         raise typer.Exit(1) from exc
+    finally:
+        client.close()
+
+
+def _oauth_login(provider: str) -> None:
+    """Run the OAuth device flow: show a code, open the browser, poll for token."""
+    client, session = _client()
+    try:
+        try:
+            start = client.oauth_start(provider)
+        except ApiError as exc:
+            console.print(f"[red]{provider.title()} login unavailable:[/] {exc.detail}")
+            raise typer.Exit(1) from exc
+
+        uri = start["verification_uri"]
+        code = start["user_code"]
+        device = start["device_code"]
+        interval = int(start.get("interval", 5))
+        deadline = time.time() + int(start.get("expires_in", 900))
+
+        console.print(
+            f"\n  Open [bold underline]{uri}[/]\n"
+            f"  Enter code: [bold cyan]{code}[/]\n"
+        )
+        with contextlib.suppress(Exception):
+            webbrowser.open(uri)
+        console.print("[grey58]Waiting for authorization…[/] (Ctrl-C to cancel)")
+
+        while time.time() < deadline:
+            time.sleep(interval)
+            try:
+                r = client.oauth_poll(provider, device)
+            except ApiError as exc:
+                console.print(f"[red]Login failed:[/] {exc.detail}")
+                raise typer.Exit(1) from exc
+            status_ = r.get("status")
+            if status_ == "pending":
+                continue
+            if status_ == "slow_down":
+                interval += 5
+                continue
+            session.token = r["access_token"]
+            session.username = r["username"]
+            session.save()
+            console.print(f"[green]Logged in as[/] [bold]{session.username}[/]")
+            return
+        console.print("[red]Login timed out — please try again.[/]")
+        raise typer.Exit(1)
     finally:
         client.close()
 
@@ -103,6 +164,38 @@ def leaderboard(
         raise typer.Exit(1) from exc
     finally:
         client.close()
+
+
+# ── config subcommands ────────────────────────────────────────────────
+config_app = typer.Typer(help="Client configuration (server URL, etc).", no_args_is_help=True)
+
+
+@config_app.command("set-server")
+def config_set_server(
+    url: str = typer.Argument(..., help="Server base URL, e.g. https://abc.trycloudflare.com"),
+) -> None:
+    """Point this client at a server (local, tunnel, or deployed)."""
+    session = Session.load()
+    new_url = url.rstrip("/")
+    if new_url != session.server_url:
+        # Tokens are server-specific — clear on change to avoid stale auth.
+        session.token = None
+        session.username = None
+    session.server_url = new_url
+    session.save()
+    console.print(f"[green]Server set to[/] [bold]{session.server_url}[/]. Now log in or register.")
+
+
+@config_app.command("show")
+def config_show() -> None:
+    """Show the current client configuration."""
+    s = Session.load()
+    table = Table(show_header=False)
+    table.add_column(style="grey58", justify="right")
+    table.add_column()
+    table.add_row("Server URL", s.server_url)
+    table.add_row("Logged in as", s.username or "[grey58]not logged in[/]")
+    console.print(table)
 
 
 # ── lobby subcommands ─────────────────────────────────────────────────

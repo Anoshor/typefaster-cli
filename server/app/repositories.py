@@ -30,6 +30,12 @@ def _utc_now_iso() -> str:
     return datetime.now(UTC).isoformat()
 
 
+def _sanitize_username(raw: str) -> str:
+    """Coerce an external display name into a valid username (3-24, [A-Za-z0-9_])."""
+    cleaned = "".join(c if (c.isalnum() or c == "_") else "_" for c in raw).strip("_")
+    return cleaned[:24]
+
+
 def today_str() -> str:
     return date.today().isoformat()
 
@@ -64,6 +70,36 @@ class RedisRepository:
     async def get_user(self, username: str) -> dict[str, str] | None:
         data = _sd(await self.r.hgetall(keys.user(username)))
         return data or None
+
+    async def find_or_create_oauth_user(
+        self, provider: str, provider_id: str, preferred_username: str
+    ) -> str:
+        """Map an external (provider, id) identity to a TYPEFASTER username,
+        creating the account on first sign-in. Returns the username."""
+        idx = keys.oauth(provider, provider_id)
+        existing = _s(await self.r.get(idx))
+        if existing:
+            return str(existing)
+        base = _sanitize_username(preferred_username) or f"{provider}user"
+        username = base
+        i = 0
+        while await self.r.exists(keys.user(username)):
+            i += 1
+            username = f"{base}{i}"
+        await self.r.hset(
+            keys.user(username),
+            mapping={
+                "username": username,
+                "created_at": _utc_now_iso(),
+                "races_played": 0,
+                "best_wpm": 0.0,
+                "password_hash": "",  # OAuth-only account; password login disabled
+                "provider": provider,
+                "provider_id": provider_id,
+            },
+        )
+        await self.r.set(idx, username)
+        return username
 
     async def bump_user_stats(self, username: str, wpm: float) -> None:
         key = keys.user(username)

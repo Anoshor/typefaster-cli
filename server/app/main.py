@@ -14,7 +14,7 @@ from .config import get_settings
 from .deps import resolve_token
 from .logging_config import configure_logging
 from .repositories import RedisRepository
-from .routers import auth, health, leaderboards, lobbies
+from .routers import auth, health, leaderboards, lobbies, oauth
 from .ws.manager import Hub
 
 log = logging.getLogger("typefaster.server")
@@ -56,6 +56,7 @@ def create_app() -> FastAPI:
     )
     app.include_router(health.router)
     app.include_router(auth.router)
+    app.include_router(oauth.router)
     app.include_router(lobbies.router)
     app.include_router(leaderboards.router)
 

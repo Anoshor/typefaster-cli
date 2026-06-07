@@ -17,6 +17,11 @@ def session(jti: str) -> str:
     return f"session:{jti}"
 
 
+def oauth(provider: str, provider_id: str) -> str:
+    """STRING: maps an external identity (github/google + id) -> our username."""
+    return f"oauth:{provider}:{provider_id}"
+
+
 def lobby(code: str) -> str:
     """HASH: name, host, is_public, mode_seconds, status, created_at."""
     return f"lobby:{code}"

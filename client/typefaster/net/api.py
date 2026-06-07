@@ -64,6 +64,15 @@ class ApiClient:
     def logout(self) -> None:
         self._request("POST", "/auth/logout", headers=self._auth_headers())
 
+    # ── oauth device flow ──────────────────────────────────────────────
+    def oauth_start(self, provider: str) -> Any:
+        return self._request("POST", f"/auth/oauth/{provider}/start")
+
+    def oauth_poll(self, provider: str, device_code: str) -> Any:
+        return self._request(
+            "POST", f"/auth/oauth/{provider}/poll", json={"device_code": device_code}
+        )
+
     def me(self) -> Any:
         return self._request("GET", "/auth/me", headers=self._auth_headers())
 

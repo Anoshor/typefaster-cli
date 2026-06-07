@@ -190,6 +190,7 @@ app.command("login")(_online.login)
 app.command("logout")(_online.logout)
 app.command("leaderboard")(_online.leaderboard)
 app.add_typer(_online.lobby_app, name="lobby")
+app.add_typer(_online.config_app, name="config")
 
 
 if __name__ == "__main__":
