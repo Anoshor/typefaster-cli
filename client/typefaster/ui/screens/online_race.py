@@ -1,8 +1,8 @@
-"""Online multiplayer race screen.
+"""Online multiplayer lobby + race screen.
 
-Connects to the server over WebSocket, auto-readies, and lets the **server**
-drive countdown/start/finish. The client only renders state, reports progress,
-and submits a final result for server-side validation.
+Flow: connect → wait in the lobby (press R to ready) → the **server** starts the
+race when everyone is ready, sends the same quote to all, relays progress, and
+re-scores results server-side. The client only renders state and reports input.
 """
 
 from __future__ import annotations
@@ -23,13 +23,14 @@ from textual.screen import Screen
 from textual.widgets import Static
 
 from ...domain.typing_engine import TypingEngine
+from ..widgets import bigtext
 from ..widgets.live_stats import LiveStats
 from ..widgets.typing_field import TypingField
 
 
-def _bar(pct: float, width: int = 24) -> str:
+def _bar(pct: float, width: int = 28) -> str:
     filled = max(0, min(width, round(pct / 100.0 * width)))
-    return "#" * filled + "-" * (width - filled)
+    return "█" * filled + "─" * (width - filled)
 
 
 class OnlineRaceScreen(Screen[None]):
@@ -45,18 +46,20 @@ class OnlineRaceScreen(Screen[None]):
         self._start_ms: int | None = None
         self._typing = False
         self._finished = False
+        self._ready = False
+        self._roster: list[dict[str, Any]] = []
         self._opponents: dict[str, dict[str, float]] = {}
         self._status = "Connecting…"
         self._standings: list[dict[str, Any]] | None = None
 
     def compose(self) -> ComposeResult:
         with Vertical(id="race-wrap"):
-            yield Static("", id="net-status", classes="dim")
+            yield Static("", id="net-status")
             yield LiveStats()
             yield TypingField()
             with VerticalScroll():
                 yield Static("", id="bars")
-            yield Static("esc to leave", classes="dim")
+            yield Static("R ready   ·   esc leave", classes="dim")
 
     def on_mount(self) -> None:
         self.query_one(LiveStats).display = False
@@ -70,13 +73,12 @@ class OnlineRaceScreen(Screen[None]):
         try:
             async with websockets.connect(self.ws_url) as ws:
                 self._ws = ws
-                self._status = "Connected. Waiting for players to ready up…"
+                self._status = "In lobby — press [bold]R[/] when ready."
                 self._render_status()
-                await ws.send(json.dumps({"type": "SET_READY", "data": {"ready": True}}))
                 async for raw in ws:
                     self._handle(json.loads(raw))
         except Exception as exc:
-            self._status = f"Disconnected: {exc}"
+            self._status = f"[red]Disconnected:[/] {exc}"
             self._render_status()
 
     async def _send(self, type_: str, **data: Any) -> None:
@@ -87,7 +89,11 @@ class OnlineRaceScreen(Screen[None]):
     def _handle(self, msg: dict[str, Any]) -> None:
         etype = msg.get("type")
         data = msg.get("data", {})
-        if etype == "RACE_COUNTDOWN":
+        if etype == "LOBBY_UPDATE":
+            self._roster = data.get("players", [])
+            if not self._typing:
+                self._render_lobby(data)
+        elif etype == "RACE_COUNTDOWN":
             self._status = f"Race starts in {data.get('count')}…"
             self._render_status()
         elif etype == "RACE_START":
@@ -99,7 +105,8 @@ class OnlineRaceScreen(Screen[None]):
                     "progress": float(data.get("progress", 0)),
                     "wpm": float(data.get("wpm", 0)),
                 }
-                self._render_bars()
+                if self._typing:
+                    self._render_bars()
         elif etype == "RACE_FINISHED":
             if data.get("final"):
                 self._standings = data.get("standings", [])
@@ -109,16 +116,18 @@ class OnlineRaceScreen(Screen[None]):
                 if user and user != self.username:
                     self._opponents.setdefault(user, {})["progress"] = 100.0
                     self._render_bars()
-        elif etype == "CHAT_MESSAGE":
-            pass  # chat panel could render here
+        elif etype == "ERROR":
+            self._status = f"[red]{data.get('message', 'error')}[/]"
+            self._render_status()
 
     # ── race lifecycle ─────────────────────────────────────────────────
     def _begin(self, text: str) -> None:
         self.engine = TypingEngine(text)
         self._start_ms = int(time.time() * 1000)
         self._typing = True
-        self._status = "GO!"
-        self.query_one("#net-status", Static).display = False
+        self.query_one("#net-status", Static).update(
+            Text(bigtext.render("GO!"), justify="center", style="bold green")
+        )
         self.query_one(LiveStats).display = True
         self.query_one(TypingField).display = True
         self._render_field()
@@ -138,7 +147,6 @@ class OnlineRaceScreen(Screen[None]):
             seconds_left=seconds_left,
         )
         self._render_bars()
-        # Report progress to the server.
         self.run_worker(
             self._send(
                 "PROGRESS",
@@ -147,11 +155,19 @@ class OnlineRaceScreen(Screen[None]):
             ),
             name="progress",
         )
-        if (elapsed >= self.mode_seconds * 1000 or self.engine.finished) and not self._finished:
+        if self._start_ms is not None and elapsed >= self.mode_seconds * 1000 and not self._finished:
             self._submit_finish()
 
     def on_key(self, event: events.Key) -> None:
-        if not self._typing or self._finished or self.engine is None:
+        # Lobby phase: R toggles ready.
+        if not self._typing:
+            if event.key.lower() == "r" and not self._finished:
+                self._ready = not self._ready
+                self.run_worker(self._send("SET_READY", ready=self._ready), name="ready")
+                event.stop()
+            return
+        # Race phase: type.
+        if self._finished or self.engine is None:
             return
         t = self._elapsed()
         if event.key == "backspace":
@@ -190,7 +206,30 @@ class OnlineRaceScreen(Screen[None]):
 
     # ── rendering ──────────────────────────────────────────────────────
     def _render_status(self) -> None:
-        self.query_one("#net-status", Static).update(Text(self._status, justify="center"))
+        self.query_one("#net-status", Static).update(Text.from_markup(self._status, justify="center"))
+
+    def _render_lobby(self, data: dict[str, Any]) -> None:
+        name = data.get("name", "Lobby")
+        host = data.get("host", "")
+        table = Table(title=f"{name}  ({self.mode_seconds}s)", title_style="bold", expand=True)
+        table.add_column("Player")
+        table.add_column("Ready", justify="center")
+        for p in self._roster:
+            who = p["username"] + (" 👑" if p["username"] == host else "")
+            who += "  (you)" if p["username"] == self.username else ""
+            ready = "[green]✓[/]" if p.get("ready") else "[grey58]…[/]"
+            table.add_row(who, ready)
+        ready_n = sum(1 for p in self._roster if p.get("ready"))
+        hint = Text.from_markup(
+            f"\n{ready_n}/{len(self._roster)} ready   ·   "
+            f"press [bold]R[/] to {'unready' if self._ready else 'ready'}   ·   "
+            "race starts when everyone is ready",
+            justify="center",
+        )
+        self.query_one("#bars", Static).update(Group(table, hint))
+        self.query_one("#net-status", Static).update(
+            Text("WAITING ROOM", justify="center", style="bold cyan")
+        )
 
     def _render_field(self) -> None:
         if self.engine is not None:
@@ -201,17 +240,17 @@ class OnlineRaceScreen(Screen[None]):
     def _render_bars(self) -> None:
         text = Text()
         me_pct = self.engine.progress * 100.0 if self.engine else 0.0
-        text.append("You    ", style="bold")
-        text.append(f"[{_bar(me_pct)}] {me_pct:3.0f}%\n", style="cyan")
+        text.append(f"{self.username[:9]:<9} ", style="bold cyan")
+        text.append(f"{_bar(me_pct)} {me_pct:3.0f}%\n", style="cyan")
         for name, st in sorted(self._opponents.items()):
             pct = st.get("progress", 0.0)
-            text.append(f"{name[:7]:<7}", style="bold")
-            text.append(f"[{_bar(pct)}] {pct:3.0f}%\n", style="magenta")
+            text.append(f"{name[:9]:<9} ", style="bold magenta")
+            text.append(f"{_bar(pct)} {pct:3.0f}%\n", style="magenta")
         self.query_one("#bars", Static).update(text)
 
     def _show_standings(self) -> None:
         self._typing = False
-        table = Table(title="Final Standings", title_style="bold")
+        table = Table(title="Final Standings", title_style="bold", expand=True)
         table.add_column("#", justify="right")
         table.add_column("Player")
         table.add_column("WPM", justify="right")
@@ -224,10 +263,15 @@ class OnlineRaceScreen(Screen[None]):
                 f"{row.get('wpm', 0):.0f}",
                 f"{row.get('accuracy', 0) * 100:.0f}%",
             )
+        self.query_one("#net-status", Static).update(
+            Text("RACE COMPLETE", justify="center", style="bold green")
+        )
         self.query_one("#net-status", Static).display = True
         self.query_one(TypingField).display = False
         self.query_one(LiveStats).display = False
-        self.query_one("#bars", Static).update(Group(table, Text("\nesc to leave", style="grey58")))
+        self.query_one("#bars", Static).update(
+            Group(table, Text("\nesc to leave", style="grey58"))
+        )
 
     # ── exit ───────────────────────────────────────────────────────────
     def action_leave(self) -> None:
