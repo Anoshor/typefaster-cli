@@ -41,6 +41,8 @@ class OnlineRaceScreen(Screen[None]):
         self.ws_url = ws_url
         self.username = username
         self.mode_seconds = mode_seconds
+        # Extract the lobby code from .../ws/lobby/<code>?token=...
+        self.code = ws_url.split("/ws/lobby/", 1)[-1].split("?", 1)[0]
         self.engine: TypingEngine | None = None
         self._ws: Any = None
         self._start_ms: int | None = None
@@ -228,7 +230,11 @@ class OnlineRaceScreen(Screen[None]):
         )
         self.query_one("#bars", Static).update(Group(table, hint))
         self.query_one("#net-status", Static).update(
-            Text("WAITING ROOM", justify="center", style="bold cyan")
+            Text.from_markup(
+                f"WAITING ROOM   ·   join code: [bold cyan]{self.code}[/]\n"
+                f"[grey58]share:[/] typefaster lobby join {self.code}",
+                justify="center",
+            )
         )
 
     def _render_field(self) -> None:
