@@ -6,9 +6,9 @@ TYPEFASTER JWT. No client secrets live on the user's machine; Google's secret
 stays server-side. Both providers are free.
 
 Endpoints:
-  POST /auth/oauth/{provider}/start  -> { device_code, user_code, verification_uri, interval, expires_in }
-  POST /auth/oauth/{provider}/poll   -> { status: "pending"|"slow_down" } (200) or { access_token, username } (200)
-                                        terminal errors -> 400
+  POST /auth/oauth/{provider}/start -> device_code, user_code, verification_uri, interval
+  POST /auth/oauth/{provider}/poll  -> {status: pending|slow_down} (200), or a
+       TokenResponse (200) when authorized; terminal errors -> 400.
 """
 
 from __future__ import annotations
@@ -16,12 +16,12 @@ from __future__ import annotations
 from typing import Any
 
 import httpx
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 from typefaster_shared.dto import TokenResponse
 
 from ..config import Settings
-from ..deps import RepoDep, SettingsDep
+from ..deps import RepoDep, SettingsDep, rate_limiter
 from ..repositories import RedisRepository
 from ..security import create_access_token
 
@@ -63,7 +63,7 @@ def _check_provider(provider: str) -> None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Unknown provider")
 
 
-@router.post("/{provider}/start")
+@router.post("/{provider}/start", dependencies=[Depends(rate_limiter("oauth", 20, 60))])
 async def start(provider: str, settings: SettingsDep) -> dict[str, Any]:
     _check_provider(provider)
     cid = _client_id(provider, settings)

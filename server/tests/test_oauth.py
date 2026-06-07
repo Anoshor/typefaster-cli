@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import fakeredis.aioredis
 import pytest
-from starlette.testclient import TestClient
-
 from app.repositories import RedisRepository
+from starlette.testclient import TestClient
 
 
 def test_unknown_provider_404(client: TestClient) -> None:

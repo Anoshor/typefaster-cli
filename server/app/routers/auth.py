@@ -5,16 +5,24 @@ from __future__ import annotations
 from typing import Annotated
 
 import jwt
-from fastapi import APIRouter, Header, HTTPException, status
+from fastapi import APIRouter, Depends, Header, HTTPException, status
 from typefaster_shared.dto import LoginRequest, RegisterRequest, TokenResponse, UserPublic
 
-from ..deps import CurrentUser, RepoDep, SettingsDep
+from ..deps import CurrentUser, RepoDep, SettingsDep, rate_limiter
 from ..security import create_access_token, hash_password, verify_password
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
+# Per-IP throttle on credential endpoints (abuse / brute-force protection).
+_auth_limit = Depends(rate_limiter("auth", limit=15, window_seconds=60))
 
-@router.post("/register", response_model=TokenResponse, status_code=status.HTTP_201_CREATED)
+
+@router.post(
+    "/register",
+    response_model=TokenResponse,
+    status_code=status.HTTP_201_CREATED,
+    dependencies=[_auth_limit],
+)
 async def register(body: RegisterRequest, repo: RepoDep, settings: SettingsDep) -> TokenResponse:
     created = await repo.create_user(body.username, hash_password(body.password))
     if not created:
@@ -24,7 +32,7 @@ async def register(body: RegisterRequest, repo: RepoDep, settings: SettingsDep) 
     return TokenResponse(access_token=token, username=body.username)
 
 
-@router.post("/login", response_model=TokenResponse)
+@router.post("/login", response_model=TokenResponse, dependencies=[_auth_limit])
 async def login(body: LoginRequest, repo: RepoDep, settings: SettingsDep) -> TokenResponse:
     user = await repo.get_user(body.username)
     if not user or not verify_password(body.password, user["password_hash"]):

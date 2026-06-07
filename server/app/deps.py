@@ -23,6 +23,22 @@ SettingsDep = Annotated[Settings, Depends(settings_dep)]
 RepoDep = Annotated[RedisRepository, Depends(repo_dep)]
 
 
+def rate_limiter(bucket: str, limit: int, window_seconds: int):  # type: ignore[no-untyped-def]
+    """Build a per-IP fixed-window rate-limit dependency for a route."""
+
+    async def _dep(request: Request) -> None:
+        ip = request.client.host if request.client else "unknown"
+        repo = repo_dep(request)
+        count = await repo.incr_rate(f"rl:{bucket}:{ip}", window_seconds)
+        if count > limit:
+            raise HTTPException(
+                status.HTTP_429_TOO_MANY_REQUESTS,
+                "Too many requests — please slow down.",
+            )
+
+    return _dep
+
+
 async def current_user(
     repo: RepoDep,
     settings: SettingsDep,

@@ -1,0 +1,38 @@
+# Fly.io deployment for the TYPEFASTER server.
+#   fly launch --no-deploy        # first time (creates the app; keep this file)
+#   fly redis create              # free Upstash Redis -> copy the rediss:// URL
+#   fly secrets set TYPEFASTER_JWT_SECRET=$(openssl rand -hex 32) \
+#                   TYPEFASTER_REDIS_URL='rediss://…' \
+#                   TYPEFASTER_CORS_ORIGINS='*'
+#   fly deploy
+#
+# If the app name below is taken, change it (and the client default in
+# client/typefaster/net/token_store.py) to match your real app URL.
+
+app = "typefaster-cli"
+primary_region = "bom"          # Mumbai; change to your nearest region
+
+[build]
+  dockerfile = "server/Dockerfile"
+
+[env]
+  TYPEFASTER_CORS_ORIGINS = "*"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  # Keep one machine warm so WebSocket races aren't dropped by cold starts.
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "get"
+    path = "/healthz"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

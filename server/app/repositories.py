@@ -110,6 +110,14 @@ class RedisRepository:
         if wpm > current:
             await self.r.hset(key, "best_wpm", wpm)
 
+    # ── rate limiting ──────────────────────────────────────────────────
+    async def incr_rate(self, key: str, window_seconds: int) -> int:
+        """Increment a fixed-window counter, returning the new count."""
+        n = int(await self.r.incr(key))
+        if n == 1:
+            await self.r.expire(key, window_seconds)
+        return n
+
     # ── sessions ───────────────────────────────────────────────────────
     async def create_session(self, jti: str, username: str, ttl_seconds: int) -> None:
         await self.r.set(keys.session(jti), username, ex=ttl_seconds)

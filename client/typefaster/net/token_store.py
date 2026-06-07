@@ -15,7 +15,10 @@ def _auth_path() -> Path:
 
 @dataclass(slots=True)
 class Session:
-    server_url: str = "http://localhost:8000"
+    # Default points at the public TYPEFASTER server so a fresh install can
+    # register/play with zero config. Override with `typefaster config set-server`
+    # (e.g. a local server or your own deployment).
+    server_url: str = "https://typefaster-cli.fly.dev"
     token: str | None = None
     username: str | None = None
 
