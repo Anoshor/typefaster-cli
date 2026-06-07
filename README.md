@@ -17,18 +17,6 @@ typefaster
 
 ---
 
-## Status
-
-| Phase | Scope | State |
-|-------|-------|-------|
-| **Phase 1** | Offline experience: races, ghosts, profile, stats, history, daily challenge | ✅ **Implemented & tested** |
-| **Phase 2** | Online multiplayer: FastAPI + Redis + WebSockets, auth, lobbies, leaderboards, anti-cheat, Docker | ✅ **Implemented & tested** |
-
-Both phases are implemented. Offline play needs only `pip install`; online play
-adds a Dockerized server (see [Online play](#online-play-phase-2)).
-
----
-
 ## What Phase 1 delivers
 
 - **Instant offline races** — random quote, live WPM / accuracy / progress / timer.
