@@ -1,0 +1,68 @@
+# TYPEFASTER online stack — deployable to a single Linux VM.
+#   docker compose up -d --build
+#
+# Services: redis (state) + server (FastAPI/WS) + nginx (TLS reverse proxy).
+# nginx is in the `proxy` profile so plain `docker compose up` runs just
+# redis+server for local dev; enable TLS with `--profile proxy`.
+
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    volumes:
+      - ./infra/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks: [internal]
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      TYPEFASTER_REDIS_URL: redis://redis:6379/0
+      TYPEFASTER_JWT_SECRET: ${TYPEFASTER_JWT_SECRET:?set a strong secret in .env}
+      TYPEFASTER_CORS_ORIGINS: ${TYPEFASTER_CORS_ORIGINS:-*}
+      TYPEFASTER_ACCESS_TOKEN_MINUTES: ${TYPEFASTER_ACCESS_TOKEN_MINUTES:-1440}
+    expose:
+      - "8000"
+    ports:
+      # Exposed directly for local dev; in production prefer nginx only.
+      - "${SERVER_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/healthz').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks: [internal]
+
+  nginx:
+    image: nginx:1.27-alpine
+    profiles: ["proxy"]
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infra/nginx/certs:/etc/nginx/certs:ro
+    networks: [internal]
+
+volumes:
+  redis-data:
+
+networks:
+  internal:
+    driver: bridge

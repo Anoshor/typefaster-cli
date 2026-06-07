@@ -1,0 +1,2642 @@
+[
+{
+"id": "q0001",
+"text": "The only thing we have to fear is fear itself.",
+"source": "Franklin D. Roosevelt"
+},
+{
+"id": "q0002",
+"text": "In the middle of difficulty lies opportunity.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0003",
+"text": "That which does not kill us makes us stronger.",
+"source": "Friedrich Nietzsche"
+},
+{
+"id": "q0004",
+"text": "The unexamined life is not worth living.",
+"source": "Socrates"
+},
+{
+"id": "q0005",
+"text": "I think, therefore I am.",
+"source": "Rene Descartes"
+},
+{
+"id": "q0006",
+"text": "Knowledge is power.",
+"source": "Francis Bacon"
+},
+{
+"id": "q0007",
+"text": "Veni, vidi, vici. I came, I saw, I conquered.",
+"source": "Julius Caesar"
+},
+{
+"id": "q0008",
+"text": "The pen is mightier than the sword.",
+"source": "Edward Bulwer-Lytton"
+},
+{
+"id": "q0009",
+"text": "To be, or not to be, that is the question.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0010",
+"text": "All the world's a stage, and all the men and women merely players.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0011",
+"text": "We are such stuff as dreams are made on.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0012",
+"text": "Cowards die many times before their deaths.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0013",
+"text": "The fault, dear Brutus, is not in our stars, but in ourselves.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0014",
+"text": "Some are born great, some achieve greatness.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0015",
+"text": "Better three hours too soon than a minute too late.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0016",
+"text": "It is a far, far better thing that I do, than I have ever done.",
+"source": "Charles Dickens"
+},
+{
+"id": "q0017",
+"text": "It was the best of times, it was the worst of times.",
+"source": "Charles Dickens"
+},
+{
+"id": "q0018",
+"text": "Please, sir, I want some more.",
+"source": "Charles Dickens"
+},
+{
+"id": "q0019",
+"text": "It is a truth universally acknowledged that a single man in possession of a good fortune must be in want of a wife.",
+"source": "Jane Austen"
+},
+{
+"id": "q0020",
+"text": "There is no charm equal to tenderness of heart.",
+"source": "Jane Austen"
+},
+{
+"id": "q0021",
+"text": "Call me Ishmael.",
+"source": "Herman Melville"
+},
+{
+"id": "q0022",
+"text": "It is not down on any map; true places never are.",
+"source": "Herman Melville"
+},
+{
+"id": "q0023",
+"text": "All animals are equal, but some are more equal than others.",
+"source": "George Orwell"
+},
+{
+"id": "q0024",
+"text": "Whatever is begun in anger ends in shame.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0025",
+"text": "An investment in knowledge pays the best interest.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0026",
+"text": "Well done is better than well said.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0027",
+"text": "By failing to prepare, you are preparing to fail.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0028",
+"text": "Lost time is never found again.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0029",
+"text": "Either write something worth reading or do something worth writing.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0030",
+"text": "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+"source": "Benjamin Franklin"
+},
+{
+"id": "q0031",
+"text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+"source": "Thomas Edison"
+},
+{
+"id": "q0032",
+"text": "I have not failed. I've just found ten thousand ways that won't work.",
+"source": "Thomas Edison"
+},
+{
+"id": "q0033",
+"text": "Our greatest weakness lies in giving up.",
+"source": "Thomas Edison"
+},
+{
+"id": "q0034",
+"text": "Imagination is more important than knowledge.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0035",
+"text": "Life is like riding a bicycle. To keep your balance you must keep moving.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0036",
+"text": "A person who never made a mistake never tried anything new.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0037",
+"text": "Strive not to be a success, but rather to be of value.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0038",
+"text": "Logic will get you from A to B. Imagination will take you everywhere.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0039",
+"text": "The important thing is not to stop questioning.",
+"source": "Albert Einstein"
+},
+{
+"id": "q0040",
+"text": "Eighty percent of success is showing up.",
+"source": "Woody Allen"
+},
+{
+"id": "q0041",
+"text": "The journey of a thousand miles begins with a single step.",
+"source": "Lao Tzu"
+},
+{
+"id": "q0042",
+"text": "When I let go of what I am, I become what I might be.",
+"source": "Lao Tzu"
+},
+{
+"id": "q0043",
+"text": "He who knows that enough is enough will always have enough.",
+"source": "Lao Tzu"
+},
+{
+"id": "q0044",
+"text": "Nature does not hurry, yet everything is accomplished.",
+"source": "Lao Tzu"
+},
+{
+"id": "q0045",
+"text": "Knowing others is wisdom, knowing yourself is enlightenment.",
+"source": "Lao Tzu"
+},
+{
+"id": "q0046",
+"text": "It does not matter how slowly you go as long as you do not stop.",
+"source": "Confucius"
+},
+{
+"id": "q0047",
+"text": "Our greatest glory is not in never falling, but in rising every time we fall.",
+"source": "Confucius"
+},
+{
+"id": "q0048",
+"text": "Everything has beauty, but not everyone sees it.",
+"source": "Confucius"
+},
+{
+"id": "q0049",
+"text": "Real knowledge is to know the extent of one's ignorance.",
+"source": "Confucius"
+},
+{
+"id": "q0050",
+"text": "The man who moves a mountain begins by carrying away small stones.",
+"source": "Confucius"
+},
+{
+"id": "q0051",
+"text": "Wheresoever you go, go with all your heart.",
+"source": "Confucius"
+},
+{
+"id": "q0052",
+"text": "Life is really simple, but we insist on making it complicated.",
+"source": "Confucius"
+},
+{
+"id": "q0053",
+"text": "I cannot teach anybody anything. I can only make them think.",
+"source": "Socrates"
+},
+{
+"id": "q0054",
+"text": "The only true wisdom is in knowing you know nothing.",
+"source": "Socrates"
+},
+{
+"id": "q0055",
+"text": "Wonder is the beginning of wisdom.",
+"source": "Socrates"
+},
+{
+"id": "q0056",
+"text": "Be kind, for everyone you meet is fighting a hard battle.",
+"source": "Plato"
+},
+{
+"id": "q0057",
+"text": "The beginning is the most important part of the work.",
+"source": "Plato"
+},
+{
+"id": "q0058",
+"text": "Necessity is the mother of invention.",
+"source": "Plato"
+},
+{
+"id": "q0059",
+"text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+"source": "Aristotle"
+},
+{
+"id": "q0060",
+"text": "Knowing yourself is the beginning of all wisdom.",
+"source": "Aristotle"
+},
+{
+"id": "q0061",
+"text": "Patience is bitter, but its fruit is sweet.",
+"source": "Aristotle"
+},
+{
+"id": "q0062",
+"text": "Quality is not an act, it is a habit.",
+"source": "Aristotle"
+},
+{
+"id": "q0063",
+"text": "It is the mark of an educated mind to entertain a thought without accepting it.",
+"source": "Aristotle"
+},
+{
+"id": "q0064",
+"text": "The whole is greater than the sum of its parts.",
+"source": "Aristotle"
+},
+{
+"id": "q0065",
+"text": "Happiness depends upon ourselves.",
+"source": "Aristotle"
+},
+{
+"id": "q0066",
+"text": "Float like a butterfly, sting like a bee.",
+"source": "Muhammad Ali"
+},
+{
+"id": "q0067",
+"text": "Two roads diverged in a wood, and I took the one less traveled by.",
+"source": "Robert Frost"
+},
+{
+"id": "q0068",
+"text": "In three words I can sum up everything I've learned about life: it goes on.",
+"source": "Robert Frost"
+},
+{
+"id": "q0069",
+"text": "The woods are lovely, dark and deep, but I have promises to keep.",
+"source": "Robert Frost"
+},
+{
+"id": "q0070",
+"text": "Hope is the thing with feathers that perches in the soul.",
+"source": "Emily Dickinson"
+},
+{
+"id": "q0071",
+"text": "Tell all the truth but tell it slant.",
+"source": "Emily Dickinson"
+},
+{
+"id": "q0072",
+"text": "That it will never come again is what makes life so sweet.",
+"source": "Emily Dickinson"
+},
+{
+"id": "q0073",
+"text": "Do I dare disturb the universe?",
+"source": "T. S. Eliot"
+},
+{
+"id": "q0074",
+"text": "Not with a bang but a whimper.",
+"source": "T. S. Eliot"
+},
+{
+"id": "q0075",
+"text": "I have measured out my life with coffee spoons.",
+"source": "T. S. Eliot"
+},
+{
+"id": "q0076",
+"text": "Do not go gentle into that good night.",
+"source": "Dylan Thomas"
+},
+{
+"id": "q0077",
+"text": "I wandered lonely as a cloud that floats on high.",
+"source": "William Wordsworth"
+},
+{
+"id": "q0078",
+"text": "The child is father of the man.",
+"source": "William Wordsworth"
+},
+{
+"id": "q0079",
+"text": "Beauty is truth, truth beauty, that is all ye know on earth.",
+"source": "John Keats"
+},
+{
+"id": "q0080",
+"text": "A thing of beauty is a joy for ever.",
+"source": "John Keats"
+},
+{
+"id": "q0081",
+"text": "If winter comes, can spring be far behind?",
+"source": "Percy Bysshe Shelley"
+},
+{
+"id": "q0082",
+"text": "She walks in beauty, like the night.",
+"source": "Lord Byron"
+},
+{
+"id": "q0083",
+"text": "A little learning is a dangerous thing.",
+"source": "Alexander Pope"
+},
+{
+"id": "q0084",
+"text": "To err is human, to forgive divine.",
+"source": "Alexander Pope"
+},
+{
+"id": "q0085",
+"text": "Hope springs eternal in the human breast.",
+"source": "Alexander Pope"
+},
+{
+"id": "q0086",
+"text": "No man is an island entire of itself.",
+"source": "John Donne"
+},
+{
+"id": "q0087",
+"text": "Never send to know for whom the bell tolls; it tolls for thee.",
+"source": "John Donne"
+},
+{
+"id": "q0088",
+"text": "Had we but world enough and time.",
+"source": "Andrew Marvell"
+},
+{
+"id": "q0089",
+"text": "They also serve who only stand and wait.",
+"source": "John Milton"
+},
+{
+"id": "q0090",
+"text": "The mind is its own place, and in itself can make a heaven of hell.",
+"source": "John Milton"
+},
+{
+"id": "q0091",
+"text": "Better to reign in hell than serve in heaven.",
+"source": "John Milton"
+},
+{
+"id": "q0092",
+"text": "All that glitters is not gold.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0093",
+"text": "Brevity is the soul of wit.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0094",
+"text": "Give every man thy ear, but few thy voice.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0095",
+"text": "This above all: to thine own self be true.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0096",
+"text": "Nothing will come of nothing.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0097",
+"text": "The course of true love never did run smooth.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0098",
+"text": "Now is the winter of our discontent.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0099",
+"text": "If music be the food of love, play on.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0100",
+"text": "What's done cannot be undone.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0101",
+"text": "There is nothing either good or bad, but thinking makes it so.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0102",
+"text": "The lady doth protest too much, methinks.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0103",
+"text": "We know what we are, but know not what we may be.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0104",
+"text": "Action is eloquence.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0105",
+"text": "How far that little candle throws his beams.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0106",
+"text": "Reading is to the mind what exercise is to the body.",
+"source": "Joseph Addison"
+},
+{
+"id": "q0107",
+"text": "A man should never be ashamed to own he has been in the wrong.",
+"source": "Alexander Pope"
+},
+{
+"id": "q0108",
+"text": "The proper study of mankind is man.",
+"source": "Alexander Pope"
+},
+{
+"id": "q0109",
+"text": "History is the version of past events that people have decided to agree upon.",
+"source": "Napoleon Bonaparte"
+},
+{
+"id": "q0110",
+"text": "Never interrupt your enemy when he is making a mistake.",
+"source": "Napoleon Bonaparte"
+},
+{
+"id": "q0111",
+"text": "Impossible is a word found only in the dictionary of fools.",
+"source": "Napoleon Bonaparte"
+},
+{
+"id": "q0112",
+"text": "Give me six hours to chop down a tree and I will spend the first four sharpening the axe.",
+"source": "Abraham Lincoln"
+},
+{
+"id": "q0113",
+"text": "Whatever you are, be a good one.",
+"source": "Abraham Lincoln"
+},
+{
+"id": "q0114",
+"text": "Nearly all men can stand adversity, but if you want to test a man's character, give him power.",
+"source": "Abraham Lincoln"
+},
+{
+"id": "q0115",
+"text": "The best way to predict your future is to create it.",
+"source": "Abraham Lincoln"
+},
+{
+"id": "q0116",
+"text": "Folks are usually about as happy as they make their minds up to be.",
+"source": "Abraham Lincoln"
+},
+{
+"id": "q0117",
+"text": "Government of the people, by the people, for the people, shall not perish from the earth.",
+"source": "Abraham Lincoln"
+},
+{
+"id": "q0118",
+"text": "Ask not what your country can do for you.",
+"source": "John F. Kennedy"
+},
+{
+"id": "q0119",
+"text": "A rose by any other name would smell as sweet.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0120",
+"text": "Discretion is the better part of valor.",
+"source": "William Shakespeare"
+},
+{
+"id": "q0121",
+"text": "Twenty years from now you will be more disappointed by the things you did not do.",
+"source": "Mark Twain"
+},
+{
+"id": "q0122",
+"text": "The secret of getting ahead is getting started.",
+"source": "Mark Twain"
+},
+{
+"id": "q0123",
+"text": "Whenever you find yourself on the side of the majority, it is time to pause and reflect.",
+"source": "Mark Twain"
+},
+{
+"id": "q0124",
+"text": "Kindness is the language which the deaf can hear and the blind can see.",
+"source": "Mark Twain"
+},
+{
+"id": "q0125",
+"text": "Courage is resistance to fear, mastery of fear, not absence of fear.",
+"source": "Mark Twain"
+},
+{
+"id": "q0126",
+"text": "The two most important days in your life are the day you are born and the day you find out why.",
+"source": "Mark Twain"
+},
+{
+"id": "q0127",
+"text": "Get your facts first, then you can distort them as you please.",
+"source": "Mark Twain"
+},
+{
+"id": "q0128",
+"text": "Good friends, good books, and a sleepy conscience: this is the ideal life.",
+"source": "Mark Twain"
+},
+{
+"id": "q0129",
+"text": "It is not the size of the dog in the fight, it is the size of the fight in the dog.",
+"source": "Mark Twain"
+},
+{
+"id": "q0130",
+"text": "Be yourself; everyone else is already taken.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0131",
+"text": "We are all in the gutter, but some of us are looking at the stars.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0132",
+"text": "To live is the rarest thing in the world; most people exist, that is all.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0133",
+"text": "Always forgive your enemies; nothing annoys them so much.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0134",
+"text": "Experience is simply the name we give our mistakes.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0135",
+"text": "The truth is rarely pure and never simple.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0136",
+"text": "I can resist everything except temptation.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0137",
+"text": "A cynic is a man who knows the price of everything and the value of nothing.",
+"source": "Oscar Wilde"
+},
+{
+"id": "q0138",
+"text": "It is better to be looked over than overlooked.",
+"source": "Mae West"
+},
+{
+"id": "q0139",
+"text": "When written in Chinese, the word crisis is composed of two characters.",
+"source": "John F. Kennedy"
+},
+{
+"id": "q0140",
+"text": "Do not wait to strike till the iron is hot, but make it hot by striking.",
+"source": "William Butler Yeats"
+},
+{
+"id": "q0141",
+"text": "Education is not the filling of a pail, but the lighting of a fire.",
+"source": "William Butler Yeats"
+},
+{
+"id": "q0142",
+"text": "Think where man's glory most begins and ends.",
+"source": "William Butler Yeats"
+},
+{
+"id": "q0143",
+"text": "The best lack all conviction, while the worst are full of passionate intensity.",
+"source": "William Butler Yeats"
+},
+{
+"id": "q0144",
+"text": "There is no greatness where there is no simplicity, goodness, and truth.",
+"source": "Leo Tolstoy"
+},
+{
+"id": "q0145",
+"text": "Everyone thinks of changing the world, but no one thinks of changing himself.",
+"source": "Leo Tolstoy"
+},
+{
+"id": "q0146",
+"text": "All happy families are alike; each unhappy family is unhappy in its own way.",
+"source": "Leo Tolstoy"
+},
+{
+"id": "q0147",
+"text": "The two most powerful warriors are patience and time.",
+"source": "Leo Tolstoy"
+},
+{
+"id": "q0148",
+"text": "Beauty will save the world.",
+"source": "Fyodor Dostoevsky"
+},
+{
+"id": "q0149",
+"text": "The mystery of human existence lies not in just staying alive, but in finding something to live for.",
+"source": "Fyodor Dostoevsky"
+},
+{
+"id": "q0150",
+"text": "Pain and suffering are always inevitable for a large intelligence and a deep heart.",
+"source": "Fyodor Dostoevsky"
+},
+{
+"id": "q0151",
+"text": "To go wrong in one's own way is better than to go right in someone else's.",
+"source": "Fyodor Dostoevsky"
+},
+{
+"id": "q0152",
+"text": "Man is what he believes.",
+"source": "Anton Chekhov"
+},
+{
+"id": "q0153",
+"text": "Knowledge is of no value unless you put it into practice.",
+"source": "Anton Chekhov"
+},
+{
+"id": "q0154",
+"text": "Don't tell me the moon is shining; show me the glint of light on broken glass.",
+"source": "Anton Chekhov"
+},
+{
+"id": "q0155",
+"text": "Not all those who wander are lost.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0156",
+"text": "Even the smallest person can change the course of the future.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0157",
+"text": "Little by little, one travels far.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0158",
+"text": "All we have to decide is what to do with the time that is given us.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0159",
+"text": "Courage is found in unlikely places.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0160",
+"text": "It's the job that's never started as takes longest to finish.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0161",
+"text": "A single dream is more powerful than a thousand realities.",
+"source": "J. R. R. Tolkien"
+},
+{
+"id": "q0162",
+"text": "The longest journey begins beneath one's own feet.",
+"source": "Old Proverb"
+},
+{
+"id": "q0163",
+"text": "Actions speak louder than words.",
+"source": "Proverb"
+},
+{
+"id": "q0164",
+"text": "A picture is worth a thousand words.",
+"source": "Proverb"
+},
+{
+"id": "q0165",
+"text": "The early bird catches the worm.",
+"source": "Proverb"
+},
+{
+"id": "q0166",
+"text": "Honesty is the best policy.",
+"source": "Proverb"
+},
+{
+"id": "q0167",
+"text": "Practice makes perfect.",
+"source": "Proverb"
+},
+{
+"id": "q0168",
+"text": "Where there is a will, there is a way.",
+"source": "Proverb"
+},
+{
+"id": "q0169",
+"text": "Better late than never.",
+"source": "Proverb"
+},
+{
+"id": "q0170",
+"text": "Birds of a feather flock together.",
+"source": "Proverb"
+},
+{
+"id": "q0171",
+"text": "Don't count your chickens before they hatch.",
+"source": "Proverb"
+},
+{
+"id": "q0172",
+"text": "Every cloud has a silver lining.",
+"source": "Proverb"
+},
+{
+"id": "q0173",
+"text": "Fortune favors the bold.",
+"source": "Proverb"
+},
+{
+"id": "q0174",
+"text": "Great minds think alike.",
+"source": "Proverb"
+},
+{
+"id": "q0175",
+"text": "If it ain't broke, don't fix it.",
+"source": "Proverb"
+},
+{
+"id": "q0176",
+"text": "Look before you leap.",
+"source": "Proverb"
+},
+{
+"id": "q0177",
+"text": "Out of sight, out of mind.",
+"source": "Proverb"
+},
+{
+"id": "q0178",
+"text": "Rome was not built in a day.",
+"source": "Proverb"
+},
+{
+"id": "q0179",
+"text": "The grass is always greener on the other side.",
+"source": "Proverb"
+},
+{
+"id": "q0180",
+"text": "When in Rome, do as the Romans do.",
+"source": "Proverb"
+},
+{
+"id": "q0181",
+"text": "You can't judge a book by its cover.",
+"source": "Proverb"
+},
+{
+"id": "q0182",
+"text": "A chain is only as strong as its weakest link.",
+"source": "Proverb"
+},
+{
+"id": "q0183",
+"text": "A friend in need is a friend indeed.",
+"source": "Proverb"
+},
+{
+"id": "q0184",
+"text": "All good things must come to an end.",
+"source": "Proverb"
+},
+{
+"id": "q0185",
+"text": "An apple a day keeps the doctor away.",
+"source": "Proverb"
+},
+{
+"id": "q0186",
+"text": "Beggars can't be choosers.",
+"source": "Proverb"
+},
+{
+"id": "q0187",
+"text": "Curiosity killed the cat.",
+"source": "Proverb"
+},
+{
+"id": "q0188",
+"text": "Don't bite the hand that feeds you.",
+"source": "Proverb"
+},
+{
+"id": "q0189",
+"text": "Don't put all your eggs in one basket.",
+"source": "Proverb"
+},
+{
+"id": "q0190",
+"text": "Easy come, easy go.",
+"source": "Proverb"
+},
+{
+"id": "q0191",
+"text": "Familiarity breeds contempt.",
+"source": "Proverb"
+},
+{
+"id": "q0192",
+"text": "Good things come to those who wait.",
+"source": "Proverb"
+},
+{
+"id": "q0193",
+"text": "Hope for the best, prepare for the worst.",
+"source": "Proverb"
+},
+{
+"id": "q0194",
+"text": "If you can't beat them, join them.",
+"source": "Proverb"
+},
+{
+"id": "q0195",
+"text": "Keep your friends close and your enemies closer.",
+"source": "Proverb"
+},
+{
+"id": "q0196",
+"text": "Laughter is the best medicine.",
+"source": "Proverb"
+},
+{
+"id": "q0197",
+"text": "Many hands make light work.",
+"source": "Proverb"
+},
+{
+"id": "q0198",
+"text": "No news is good news.",
+"source": "Proverb"
+},
+{
+"id": "q0199",
+"text": "Once bitten, twice shy.",
+"source": "Proverb"
+},
+{
+"id": "q0200",
+"text": "People who live in glass houses shouldn't throw stones.",
+"source": "Proverb"
+},
+{
+"id": "q0201",
+"text": "Slow and steady wins the race.",
+"source": "Proverb"
+},
+{
+"id": "q0202",
+"text": "The squeaky wheel gets the grease.",
+"source": "Proverb"
+},
+{
+"id": "q0203",
+"text": "There's no place like home.",
+"source": "Proverb"
+},
+{
+"id": "q0204",
+"text": "Two heads are better than one.",
+"source": "Proverb"
+},
+{
+"id": "q0205",
+"text": "When the going gets tough, the tough get going.",
+"source": "Proverb"
+},
+{
+"id": "q0206",
+"text": "You reap what you sow.",
+"source": "Proverb"
+},
+{
+"id": "q0207",
+"text": "A journey of self-discovery starts with a single honest question.",
+"source": "Proverb"
+},
+{
+"id": "q0208",
+"text": "Measure twice and cut once.",
+"source": "Proverb"
+},
+{
+"id": "q0209",
+"text": "Strike while the iron is hot.",
+"source": "Proverb"
+},
+{
+"id": "q0210",
+"text": "The apple never falls far from the tree.",
+"source": "Proverb"
+},
+{
+"id": "q0211",
+"text": "Time and tide wait for no one.",
+"source": "Proverb"
+},
+{
+"id": "q0212",
+"text": "A watched pot never boils.",
+"source": "Proverb"
+},
+{
+"id": "q0213",
+"text": "Don't cross the bridge until you come to it.",
+"source": "Proverb"
+},
+{
+"id": "q0214",
+"text": "Absence makes the heart grow fonder.",
+"source": "Proverb"
+},
+{
+"id": "q0215",
+"text": "Beauty is in the eye of the beholder.",
+"source": "Proverb"
+},
+{
+"id": "q0216",
+"text": "Blood is thicker than water.",
+"source": "Proverb"
+},
+{
+"id": "q0217",
+"text": "Cleanliness is next to godliness.",
+"source": "Proverb"
+},
+{
+"id": "q0218",
+"text": "Every dog has its day.",
+"source": "Proverb"
+},
+{
+"id": "q0219",
+"text": "Give credit where credit is due.",
+"source": "Proverb"
+},
+{
+"id": "q0220",
+"text": "Half a loaf is better than none.",
+"source": "Proverb"
+},
+{
+"id": "q0221",
+"text": "Ignorance is bliss.",
+"source": "Proverb"
+},
+{
+"id": "q0222",
+"text": "It takes two to tango.",
+"source": "Proverb"
+},
+{
+"id": "q0223",
+"text": "Jack of all trades, master of none.",
+"source": "Proverb"
+},
+{
+"id": "q0224",
+"text": "Knowledge speaks, but wisdom listens.",
+"source": "Proverb"
+},
+{
+"id": "q0225",
+"text": "Let sleeping dogs lie.",
+"source": "Proverb"
+},
+{
+"id": "q0226",
+"text": "Make hay while the sun shines.",
+"source": "Proverb"
+},
+{
+"id": "q0227",
+"text": "Never look a gift horse in the mouth.",
+"source": "Proverb"
+},
+{
+"id": "q0228",
+"text": "Opportunity seldom knocks twice.",
+"source": "Proverb"
+},
+{
+"id": "q0229",
+"text": "Patience is a virtue worth cultivating.",
+"source": "Proverb"
+},
+{
+"id": "q0230",
+"text": "Still waters run deep.",
+"source": "Proverb"
+},
+{
+"id": "q0231",
+"text": "The pen leaves a longer shadow than the sword.",
+"source": "Proverb"
+},
+{
+"id": "q0232",
+"text": "A humble farmer circled back against the wind beneath a sky of stars long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0233",
+"text": "A humble farmer climbed against the wind down the narrow lane as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0234",
+"text": "A humble farmer climbed under a pale moon down the narrow lane long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0235",
+"text": "A humble farmer drifted before sunrise around the ancient ruins though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0236",
+"text": "A humble farmer drifted into the unknown into the heart of the forest and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0237",
+"text": "A humble farmer drifted swiftly into the heart of the forest while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0238",
+"text": "A humble farmer drifted through the valley below the rolling clouds though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0239",
+"text": "A humble farmer glided across the open plain into the heart of the forest though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0240",
+"text": "A humble farmer glided before sunrise along the winding coast and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0241",
+"text": "A humble farmer marched across the open plain around the ancient ruins and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0242",
+"text": "A humble farmer pressed onward step by step into the heart of the forest as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0243",
+"text": "A humble farmer pressed onward under a pale moon along the winding coast as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0244",
+"text": "A humble farmer pressed onward without hesitation through the crowded market while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0245",
+"text": "A humble farmer raced beyond the old gate below the rolling clouds and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0246",
+"text": "A humble farmer raced under a pale moon past the sleeping village while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0247",
+"text": "A humble farmer raced without hesitation around the ancient ruins and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0248",
+"text": "A humble farmer soared against the wind into the heart of the forest while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0249",
+"text": "A humble farmer stumbled quietly toward the distant hills though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0250",
+"text": "A humble farmer stumbled without hesitation through the crowded market though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0251",
+"text": "A humble farmer wound its way swiftly toward the distant hills with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0252",
+"text": "A humble farmer wound its way with great care into the heart of the forest and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0253",
+"text": "A quiet engineer circled back before sunrise across the silent desert while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0254",
+"text": "A quiet engineer climbed against the wind beneath a sky of stars and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0255",
+"text": "A quiet engineer climbed without hesitation along the winding coast and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0256",
+"text": "A quiet engineer glided against the wind past the sleeping village and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0257",
+"text": "A quiet engineer glided beyond the old gate into the heart of the forest as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0258",
+"text": "A quiet engineer marched without hesitation around the ancient ruins and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0259",
+"text": "A quiet engineer soared into the unknown along the winding coast while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0260",
+"text": "A quiet engineer soared through the valley across the silent desert until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0261",
+"text": "A quiet engineer soared through the valley through the crowded market as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0262",
+"text": "A quiet engineer soared under a pale moon below the rolling clouds and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0263",
+"text": "A quiet engineer stumbled before sunrise through the crowded market as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0264",
+"text": "A quiet engineer stumbled through the valley between the tall pines and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0265",
+"text": "A quiet engineer wandered across the open plain down the narrow lane and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0266",
+"text": "A quiet engineer wandered across the open plain down the narrow lane while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0267",
+"text": "A quiet engineer wandered step by step across the silent desert and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0268",
+"text": "A restless wanderer circled back before sunrise between the tall pines and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0269",
+"text": "A restless wanderer circled back swiftly over the frozen lake and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0270",
+"text": "A restless wanderer climbed before sunrise over the frozen lake and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0271",
+"text": "A restless wanderer drifted without hesitation around the ancient ruins and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0272",
+"text": "A restless wanderer glided quietly along the winding coast and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0273",
+"text": "A restless wanderer glided through the valley into the heart of the forest and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0274",
+"text": "A restless wanderer marched through the valley over the frozen lake and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0275",
+"text": "A restless wanderer pressed onward before sunrise through the crowded market as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0276",
+"text": "A restless wanderer pressed onward swiftly between the tall pines though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0277",
+"text": "A restless wanderer pressed onward without hesitation across the silent desert with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0278",
+"text": "A restless wanderer raced through the valley through the crowded market though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0279",
+"text": "A restless wanderer raced under a pale moon into the heart of the forest while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0280",
+"text": "A restless wanderer soared through the valley through the crowded market and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0281",
+"text": "A restless wanderer stumbled beyond the old gate past the sleeping village and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0282",
+"text": "A restless wanderer wandered before sunrise around the ancient ruins long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0283",
+"text": "A restless wanderer wandered with great care into the heart of the forest with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0284",
+"text": "A restless wanderer wound its way before sunrise over the frozen lake as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0285",
+"text": "A restless wanderer wound its way into the unknown along the winding coast and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0286",
+"text": "A restless wanderer wound its way into the unknown around the ancient ruins with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0287",
+"text": "A single candle climbed under a pale moon across the silent desert as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0288",
+"text": "A single candle drifted without hesitation below the rolling clouds and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0289",
+"text": "A single candle glided quietly below the rolling clouds until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0290",
+"text": "A single candle marched against the wind across the silent desert long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0291",
+"text": "A single candle marched under a pale moon over the frozen lake and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0292",
+"text": "A single candle pressed onward into the unknown beneath a sky of stars and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0293",
+"text": "A single candle pressed onward quietly beneath a sky of stars as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0294",
+"text": "A single candle settled quietly across the silent desert as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0295",
+"text": "A single candle soared before sunrise between the tall pines though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0296",
+"text": "A single candle stumbled into the unknown beneath a sky of stars while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0297",
+"text": "A single candle wandered against the wind along the winding coast until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0298",
+"text": "A single candle wandered swiftly down the narrow lane long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0299",
+"text": "A single candle wound its way into the unknown through the crowded market as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0300",
+"text": "A single candle wound its way quietly between the tall pines long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0301",
+"text": "A weathered sailor circled back before sunrise over the frozen lake though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0302",
+"text": "A weathered sailor circled back through the valley past the sleeping village and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0303",
+"text": "A weathered sailor circled back with great care below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0304",
+"text": "A weathered sailor climbed before sunrise around the ancient ruins and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0305",
+"text": "A weathered sailor climbed without hesitation between the tall pines with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0306",
+"text": "A weathered sailor drifted through the valley past the sleeping village while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0307",
+"text": "A weathered sailor drifted without hesitation around the ancient ruins and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0308",
+"text": "A weathered sailor raced across the open plain over the frozen lake though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0309",
+"text": "A weathered sailor raced step by step through the crowded market and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0310",
+"text": "A weathered sailor soared against the wind below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0311",
+"text": "A weathered sailor stumbled beyond the old gate below the rolling clouds as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0312",
+"text": "A weathered sailor wandered before sunrise between the tall pines as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0313",
+"text": "A weathered sailor wandered beyond the old gate below the rolling clouds while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0314",
+"text": "An honest merchant climbed through the valley between the tall pines until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0315",
+"text": "An honest merchant climbed through the valley over the frozen lake with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0316",
+"text": "An honest merchant drifted with great care through the crowded market while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0317",
+"text": "An honest merchant pressed onward swiftly down the narrow lane and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0318",
+"text": "An honest merchant raced before sunrise into the heart of the forest and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0319",
+"text": "An honest merchant settled swiftly around the ancient ruins and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0320",
+"text": "An honest merchant settled swiftly past the sleeping village as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0321",
+"text": "An honest merchant soared across the open plain around the ancient ruins until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0322",
+"text": "An honest merchant stumbled against the wind down the narrow lane and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0323",
+"text": "An honest merchant stumbled swiftly across the silent desert though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0324",
+"text": "An honest merchant wandered swiftly across the silent desert as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0325",
+"text": "An old lighthouse circled back across the open plain down the narrow lane though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0326",
+"text": "An old lighthouse circled back against the wind toward the distant hills until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0327",
+"text": "An old lighthouse circled back through the valley through the crowded market long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0328",
+"text": "An old lighthouse drifted beyond the old gate past the sleeping village with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0329",
+"text": "An old lighthouse glided across the open plain across the silent desert long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0330",
+"text": "An old lighthouse glided with great care down the narrow lane though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0331",
+"text": "An old lighthouse glided with great care into the heart of the forest until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0332",
+"text": "An old lighthouse marched into the unknown toward the distant hills until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0333",
+"text": "An old lighthouse marched under a pale moon between the tall pines long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0334",
+"text": "An old lighthouse pressed onward across the open plain between the tall pines until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0335",
+"text": "An old lighthouse pressed onward across the open plain between the tall pines while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0336",
+"text": "An old lighthouse raced through the valley around the ancient ruins while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0337",
+"text": "An old lighthouse raced through the valley down the narrow lane and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0338",
+"text": "An old lighthouse settled through the valley into the heart of the forest and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0339",
+"text": "An old lighthouse stumbled across the open plain along the winding coast and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0340",
+"text": "An old lighthouse stumbled across the open plain over the frozen lake and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0341",
+"text": "An old lighthouse stumbled into the unknown through the crowded market as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0342",
+"text": "An old lighthouse stumbled under a pale moon past the sleeping village though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0343",
+"text": "The autumn wind circled back into the unknown toward the distant hills with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0344",
+"text": "The autumn wind circled back quietly between the tall pines as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0345",
+"text": "The autumn wind climbed without hesitation through the crowded market long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0346",
+"text": "The autumn wind glided into the unknown along the winding coast as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0347",
+"text": "The autumn wind glided under a pale moon into the heart of the forest and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0348",
+"text": "The autumn wind marched against the wind toward the distant hills with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0349",
+"text": "The autumn wind marched before sunrise between the tall pines and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0350",
+"text": "The autumn wind marched through the valley below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0351",
+"text": "The autumn wind pressed onward quietly between the tall pines while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0352",
+"text": "The autumn wind pressed onward without hesitation below the rolling clouds though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0353",
+"text": "The autumn wind settled swiftly around the ancient ruins though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0354",
+"text": "The autumn wind soared into the unknown over the frozen lake while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0355",
+"text": "The autumn wind stumbled into the unknown along the winding coast and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0356",
+"text": "The autumn wind stumbled through the valley into the heart of the forest while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0357",
+"text": "The bright comet circled back before sunrise past the sleeping village until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0358",
+"text": "The bright comet circled back under a pale moon between the tall pines and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0359",
+"text": "The bright comet circled back under a pale moon toward the distant hills though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0360",
+"text": "The bright comet climbed before sunrise over the frozen lake though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0361",
+"text": "The bright comet drifted quietly between the tall pines long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0362",
+"text": "The bright comet drifted quietly through the crowded market and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0363",
+"text": "The bright comet marched with great care beneath a sky of stars and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0364",
+"text": "The bright comet pressed onward quietly below the rolling clouds though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0365",
+"text": "The bright comet pressed onward through the valley down the narrow lane long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0366",
+"text": "The bright comet raced before sunrise down the narrow lane long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0367",
+"text": "The bright comet settled with great care past the sleeping village while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0368",
+"text": "The bright comet soared under a pale moon between the tall pines and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0369",
+"text": "The bright comet stumbled beyond the old gate through the crowded market as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0370",
+"text": "The bright comet stumbled with great care beneath a sky of stars though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0371",
+"text": "The bright comet wandered beyond the old gate below the rolling clouds with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0372",
+"text": "The bright comet wound its way into the unknown over the frozen lake while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0373",
+"text": "The bright comet wound its way without hesitation beneath a sky of stars long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0374",
+"text": "The city at dawn circled back against the wind past the sleeping village and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0375",
+"text": "The city at dawn drifted against the wind along the winding coast and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0376",
+"text": "The city at dawn marched across the open plain around the ancient ruins while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0377",
+"text": "The city at dawn marched quietly beneath a sky of stars as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0378",
+"text": "The city at dawn pressed onward swiftly beneath a sky of stars as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0379",
+"text": "The city at dawn pressed onward with great care down the narrow lane as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0380",
+"text": "The city at dawn raced under a pale moon across the silent desert with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0381",
+"text": "The city at dawn raced without hesitation through the crowded market long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0382",
+"text": "The city at dawn soared before sunrise over the frozen lake long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0383",
+"text": "The city at dawn soared without hesitation toward the distant hills while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0384",
+"text": "The city at dawn stumbled step by step down the narrow lane and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0385",
+"text": "The city at dawn wandered before sunrise beneath a sky of stars until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0386",
+"text": "The city at dawn wandered under a pale moon through the crowded market and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0387",
+"text": "The city at dawn wound its way quietly into the heart of the forest with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0388",
+"text": "The clever inventor circled back quietly below the rolling clouds as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0389",
+"text": "The clever inventor circled back under a pale moon below the rolling clouds while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0390",
+"text": "The clever inventor climbed across the open plain into the heart of the forest though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0391",
+"text": "The clever inventor drifted against the wind across the silent desert and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0392",
+"text": "The clever inventor drifted under a pale moon over the frozen lake long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0393",
+"text": "The clever inventor drifted with great care into the heart of the forest as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0394",
+"text": "The clever inventor glided against the wind between the tall pines and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0395",
+"text": "The clever inventor glided step by step through the crowded market while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0396",
+"text": "The clever inventor soared beyond the old gate over the frozen lake and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0397",
+"text": "The clever inventor soared quietly past the sleeping village with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0398",
+"text": "The clever inventor stumbled into the unknown around the ancient ruins and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0399",
+"text": "The clever inventor wound its way step by step down the narrow lane while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0400",
+"text": "The curious traveler circled back with great care along the winding coast though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0401",
+"text": "The curious traveler climbed into the unknown across the silent desert and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0402",
+"text": "The curious traveler climbed through the valley below the rolling clouds with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0403",
+"text": "The curious traveler drifted step by step past the sleeping village as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0404",
+"text": "The curious traveler drifted under a pale moon over the frozen lake though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0405",
+"text": "The curious traveler glided into the unknown into the heart of the forest and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0406",
+"text": "The curious traveler marched under a pale moon down the narrow lane and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0407",
+"text": "The curious traveler marched without hesitation below the rolling clouds though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0408",
+"text": "The curious traveler pressed onward against the wind down the narrow lane with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0409",
+"text": "The curious traveler pressed onward into the unknown around the ancient ruins while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0410",
+"text": "The curious traveler raced against the wind into the heart of the forest while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0411",
+"text": "The curious traveler raced with great care around the ancient ruins and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0412",
+"text": "The curious traveler settled step by step along the winding coast with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0413",
+"text": "The curious traveler soared against the wind below the rolling clouds and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0414",
+"text": "The curious traveler soared quietly through the crowded market long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0415",
+"text": "The curious traveler stumbled with great care past the sleeping village long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0416",
+"text": "The curious traveler wound its way before sunrise into the heart of the forest though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0417",
+"text": "The distant mountain circled back beyond the old gate through the crowded market and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0418",
+"text": "The distant mountain climbed step by step between the tall pines and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0419",
+"text": "The distant mountain climbed swiftly into the heart of the forest with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0420",
+"text": "The distant mountain raced under a pale moon down the narrow lane and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0421",
+"text": "The distant mountain soared quietly over the frozen lake until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0422",
+"text": "The distant mountain soared swiftly around the ancient ruins though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0423",
+"text": "The distant mountain wandered beyond the old gate around the ancient ruins until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0424",
+"text": "The distant mountain wandered with great care beneath a sky of stars long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0425",
+"text": "The gentle tide climbed quietly beneath a sky of stars while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0426",
+"text": "The gentle tide drifted quietly through the crowded market and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0427",
+"text": "The gentle tide glided quietly along the winding coast as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0428",
+"text": "The gentle tide glided with great care past the sleeping village and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0429",
+"text": "The gentle tide marched against the wind over the frozen lake and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0430",
+"text": "The gentle tide raced swiftly into the heart of the forest until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0431",
+"text": "The gentle tide settled across the open plain below the rolling clouds until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0432",
+"text": "The gentle tide soared across the open plain toward the distant hills though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0433",
+"text": "The gentle tide soared quietly around the ancient ruins and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0434",
+"text": "The gentle tide stumbled through the valley between the tall pines while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0435",
+"text": "The gentle tide wandered into the unknown through the crowded market as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0436",
+"text": "The gentle tide wandered swiftly below the rolling clouds while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0437",
+"text": "The morning river circled back without hesitation beneath a sky of stars as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0438",
+"text": "The morning river drifted into the unknown toward the distant hills with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0439",
+"text": "The morning river glided across the open plain along the winding coast and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0440",
+"text": "The morning river glided across the open plain into the heart of the forest until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0441",
+"text": "The morning river glided quietly toward the distant hills as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0442",
+"text": "The morning river glided swiftly past the sleeping village as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0443",
+"text": "The morning river glided with great care past the sleeping village as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0444",
+"text": "The morning river glided without hesitation along the winding coast as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0445",
+"text": "The morning river pressed onward beyond the old gate beneath a sky of stars while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0446",
+"text": "The morning river pressed onward beyond the old gate over the frozen lake as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0447",
+"text": "The morning river raced beyond the old gate down the narrow lane until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0448",
+"text": "The morning river settled into the unknown past the sleeping village though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0449",
+"text": "The morning river settled step by step below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0450",
+"text": "The morning river wandered quietly over the frozen lake while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0451",
+"text": "The morning river wandered with great care toward the distant hills with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0452",
+"text": "The morning river wound its way step by step through the crowded market and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0453",
+"text": "The morning river wound its way without hesitation into the heart of the forest as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0454",
+"text": "The patient gardener circled back quietly into the heart of the forest while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0455",
+"text": "The patient gardener circled back swiftly through the crowded market long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0456",
+"text": "The patient gardener climbed under a pale moon into the heart of the forest and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0457",
+"text": "The patient gardener marched against the wind toward the distant hills and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0458",
+"text": "The patient gardener marched swiftly between the tall pines and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0459",
+"text": "The patient gardener marched through the valley into the heart of the forest until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0460",
+"text": "The patient gardener marched without hesitation around the ancient ruins long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0461",
+"text": "The patient gardener raced against the wind down the narrow lane as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0462",
+"text": "The patient gardener settled against the wind into the heart of the forest as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0463",
+"text": "The patient gardener settled through the valley through the crowded market as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0464",
+"text": "The patient gardener settled under a pale moon below the rolling clouds and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0465",
+"text": "The patient gardener settled without hesitation past the sleeping village long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0466",
+"text": "The patient gardener soared swiftly past the sleeping village as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0467",
+"text": "The patient gardener wound its way step by step beneath a sky of stars as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0468",
+"text": "The silver fox circled back into the unknown through the crowded market as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0469",
+"text": "The silver fox circled back swiftly into the heart of the forest as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0470",
+"text": "The silver fox drifted before sunrise beneath a sky of stars though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0471",
+"text": "The silver fox drifted without hesitation over the frozen lake though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0472",
+"text": "The silver fox marched through the valley down the narrow lane and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0473",
+"text": "The silver fox pressed onward against the wind along the winding coast though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0474",
+"text": "The silver fox pressed onward through the valley beneath a sky of stars and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0475",
+"text": "The silver fox raced quietly down the narrow lane though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0476",
+"text": "The silver fox raced step by step below the rolling clouds until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0477",
+"text": "The silver fox raced with great care between the tall pines and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0478",
+"text": "The silver fox raced with great care through the crowded market and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0479",
+"text": "The silver fox settled against the wind along the winding coast as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0480",
+"text": "The silver fox soared into the unknown below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0481",
+"text": "The silver fox stumbled against the wind below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0482",
+"text": "The silver fox stumbled swiftly through the crowded market while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0483",
+"text": "The silver fox wandered against the wind beneath a sky of stars and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0484",
+"text": "The silver fox wandered into the unknown below the rolling clouds as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0485",
+"text": "The silver fox wandered quietly below the rolling clouds and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0486",
+"text": "The silver fox wandered with great care toward the distant hills as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0487",
+"text": "The silver fox wound its way across the open plain beneath a sky of stars as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0488",
+"text": "The silver fox wound its way before sunrise over the frozen lake long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0489",
+"text": "The steady climber circled back against the wind beneath a sky of stars and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0490",
+"text": "The steady climber circled back before sunrise between the tall pines though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0491",
+"text": "The steady climber circled back through the valley beneath a sky of stars and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0492",
+"text": "The steady climber circled back through the valley between the tall pines and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0493",
+"text": "The steady climber drifted without hesitation past the sleeping village while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0494",
+"text": "The steady climber glided against the wind around the ancient ruins and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0495",
+"text": "The steady climber glided beyond the old gate down the narrow lane and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0496",
+"text": "The steady climber raced quietly through the crowded market while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0497",
+"text": "The steady climber raced through the valley down the narrow lane until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0498",
+"text": "The steady climber settled into the unknown around the ancient ruins until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0499",
+"text": "The steady climber settled with great care through the crowded market and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0500",
+"text": "The steady climber settled without hesitation between the tall pines and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0501",
+"text": "The steady climber wandered quietly between the tall pines and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0502",
+"text": "The steady climber wandered swiftly between the tall pines and carried a small hope along the way.",
+"source": "Typing Practice"
+},
+{
+"id": "q0503",
+"text": "The steady climber wound its way before sunrise past the sleeping village and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0504",
+"text": "The wandering scholar circled back through the valley along the winding coast while the world slowly woke around it.",
+"source": "Typing Practice"
+},
+{
+"id": "q0505",
+"text": "The wandering scholar circled back under a pale moon across the silent desert and never once looked back.",
+"source": "Typing Practice"
+},
+{
+"id": "q0506",
+"text": "The wandering scholar drifted against the wind through the crowded market though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0507",
+"text": "The wandering scholar glided into the unknown below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0508",
+"text": "The wandering scholar marched across the open plain between the tall pines as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0509",
+"text": "The wandering scholar pressed onward before sunrise through the crowded market long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0510",
+"text": "The wandering scholar raced beyond the old gate around the ancient ruins as the lanterns flickered in the dark.",
+"source": "Typing Practice"
+},
+{
+"id": "q0511",
+"text": "The wandering scholar settled under a pale moon around the ancient ruins as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0512",
+"text": "The wandering scholar settled with great care over the frozen lake though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0513",
+"text": "The wandering scholar soared against the wind through the crowded market though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0514",
+"text": "The wandering scholar soared beyond the old gate through the crowded market though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0515",
+"text": "The wandering scholar wandered step by step around the ancient ruins until the first light touched the ground.",
+"source": "Typing Practice"
+},
+{
+"id": "q0516",
+"text": "The wandering scholar wound its way quietly past the sleeping village and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+},
+{
+"id": "q0517",
+"text": "The wandering scholar wound its way without hesitation across the silent desert though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0518",
+"text": "The young apprentice climbed with great care into the heart of the forest as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0519",
+"text": "The young apprentice drifted against the wind below the rolling clouds long after the others had given up.",
+"source": "Typing Practice"
+},
+{
+"id": "q0520",
+"text": "The young apprentice drifted beyond the old gate around the ancient ruins with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0521",
+"text": "The young apprentice pressed onward across the open plain past the sleeping village as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0522",
+"text": "The young apprentice pressed onward into the unknown into the heart of the forest though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0523",
+"text": "The young apprentice raced across the open plain below the rolling clouds as if the whole journey had been planned.",
+"source": "Typing Practice"
+},
+{
+"id": "q0524",
+"text": "The young apprentice raced into the unknown past the sleeping village with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0525",
+"text": "The young apprentice raced under a pale moon below the rolling clouds though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0526",
+"text": "The young apprentice raced with great care over the frozen lake with a quiet confidence that surprised everyone.",
+"source": "Typing Practice"
+},
+{
+"id": "q0527",
+"text": "The young apprentice stumbled across the open plain beneath a sky of stars though the path ahead remained unclear.",
+"source": "Typing Practice"
+},
+{
+"id": "q0528",
+"text": "The young apprentice wandered across the open plain toward the distant hills and found a stillness it had long forgotten.",
+"source": "Typing Practice"
+}
+]
