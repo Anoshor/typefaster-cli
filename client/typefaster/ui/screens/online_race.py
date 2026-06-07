@@ -46,6 +46,7 @@ class OnlineRaceScreen(Screen[None]):
         self.engine: TypingEngine | None = None
         self._ws: Any = None
         self._start_ms: int | None = None
+        self._phase = "lobby"  # lobby | racing | results
         self._typing = False
         self._finished = False
         self._ready = False
@@ -93,12 +94,15 @@ class OnlineRaceScreen(Screen[None]):
         data = msg.get("data", {})
         if etype == "LOBBY_UPDATE":
             self._roster = data.get("players", [])
-            if not self._typing:
+            # Only repaint the lobby in the lobby phase — never clobber the
+            # results screen with the post-race "reset to waiting" update.
+            if self._phase == "lobby":
                 self._render_lobby(data)
         elif etype == "RACE_COUNTDOWN":
             self._status = f"Race starts in {data.get('count')}…"
             self._render_status()
         elif etype == "RACE_START":
+            self._phase = "racing"
             self._begin(data["text"])
         elif etype == "RACE_PROGRESS":
             user = data.get("username")
@@ -111,6 +115,7 @@ class OnlineRaceScreen(Screen[None]):
                     self._render_bars()
         elif etype == "RACE_FINISHED":
             if data.get("final"):
+                self._phase = "results"
                 self._standings = data.get("standings", [])
                 self._show_standings()
             else:
@@ -162,10 +167,16 @@ class OnlineRaceScreen(Screen[None]):
 
     def on_key(self, event: events.Key) -> None:
         # Lobby phase: R toggles ready.
-        if not self._typing:
-            if event.key.lower() == "r" and not self._finished:
+        if self._phase == "lobby":
+            if event.key.lower() == "r":
                 self._ready = not self._ready
                 self.run_worker(self._send("SET_READY", ready=self._ready), name="ready")
+                event.stop()
+            return
+        # Results phase: R re-arms for another round.
+        if self._phase == "results":
+            if event.key.lower() == "r":
+                self._play_again()
                 event.stop()
             return
         # Race phase: type.
@@ -276,8 +287,23 @@ class OnlineRaceScreen(Screen[None]):
         self.query_one(TypingField).display = False
         self.query_one(LiveStats).display = False
         self.query_one("#bars", Static).update(
-            Group(table, Text("\nesc to leave", style="grey58"))
+            Group(table, Text("\nR play again   ·   esc leave", style="grey58"))
         )
+
+    def _play_again(self) -> None:
+        """Re-arm for another round from the results screen."""
+        self._phase = "lobby"
+        self._typing = False
+        self._finished = False
+        self.engine = None
+        self._start_ms = None
+        self._opponents = {}
+        self._ready = True
+        self.query_one(LiveStats).display = False
+        self.query_one(TypingField).display = False
+        self._status = "Ready for next race — waiting for other players…"
+        self._render_status()
+        self.run_worker(self._send("SET_READY", ready=True), name="ready")
 
     # ── exit ───────────────────────────────────────────────────────────
     def action_leave(self) -> None:
