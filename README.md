@@ -1,5 +1,9 @@
 # ⌨ TYPEFASTER-CLI
 
+[![CI](https://github.com/Anoshor/typefaster-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/Anoshor/typefaster-cli/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 A **terminal-first** typing game inspired by MonkeyType and TypeRacer.
 
 > Not a web app. Not a browser game. Not a desktop GUI.
