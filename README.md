@@ -15,6 +15,18 @@ typefaster
 
 …and you're racing within seconds. No login, no server, no Docker, no internet required.
 
+## Install
+
+```bash
+# Homebrew
+brew install Anoshor/typefaster/typefaster
+
+# or pipx (any OS)
+pipx install typefaster-cli
+
+typefaster            # play
+```
+
 ---
 
 ## What Phase 1 delivers
