@@ -46,8 +46,8 @@ dev = [
 typefaster = "typefaster.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/anoshorpaul/typefaster-cli"
-Repository = "https://github.com/anoshorpaul/typefaster-cli"
+Homepage = "https://github.com/Anoshor/typefaster-cli"
+Repository = "https://github.com/Anoshor/typefaster-cli"
 
 # ── Packaging ──────────────────────────────────────────────────────────
 [tool.hatch.build.targets.wheel]

@@ -17,7 +17,7 @@ class Typefaster < Formula
   include Language::Python::Virtualenv
 
   desc "Terminal-first typing game (MonkeyType/TypeRacer style) with ghosts and multiplayer"
-  homepage "https://github.com/<you>/typefaster-cli"
+  homepage "https://github.com/Anoshor/typefaster-cli"
   url "https://files.pythonhosted.org/packages/source/t/typefaster-cli/typefaster_cli-0.1.0.tar.gz"
   sha256 "REPLACE_WITH_SDIST_SHA256"
   license "MIT"
