@@ -18,7 +18,7 @@ class Session:
     # Default points at the public TYPEFASTER server so a fresh install can
     # register/play with zero config. Override with `typefaster config set-server`
     # (e.g. a local server or your own deployment).
-    server_url: str = "http://140.245.248.113:8000"
+    server_url: str = "https://140.245.248.113.sslip.io"
     token: str | None = None
     username: str | None = None
 
