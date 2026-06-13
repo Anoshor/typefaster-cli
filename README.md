@@ -1,136 +1,113 @@
-# ⌨ TYPEFASTER-CLI
+# ⌨ TYPEFASTER
 
 [![CI](https://github.com/Anoshor/typefaster-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/Anoshor/typefaster-cli/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/typefaster-cli)](https://pypi.org/project/typefaster-cli/)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-A **terminal-first** typing game inspired by MonkeyType and TypeRacer.
-
-> Not a web app. Not a browser game. Not a desktop GUI.
-> A polished **Python terminal application** that works offline first, then scales to internet multiplayer.
+A **terminal-first** typing game inspired by MonkeyType and TypeRacer — race
+quotes, beat your ghost, climb leaderboards, and play **live multiplayer** with
+friends. Pure TUI, no browser, no GUI.
 
 ```bash
+brew install Anoshor/typefaster/typefaster   # or: pipx install typefaster-cli
 typefaster
 ```
 
-…and you're racing within seconds. No login, no server, no Docker, no internet required.
+---
 
 ## Install
 
+**Homebrew** (macOS / Linux)
 ```bash
-# Homebrew
 brew install Anoshor/typefaster/typefaster
+```
 
-# or pipx (any OS)
+**pipx** (any OS with Python 3.11+) — fastest
+```bash
 pipx install typefaster-cli
-
-typefaster            # play
 ```
 
----
+Verify: `typefaster version`
 
-## What Phase 1 delivers
+## Play (offline — no account, no internet)
 
-- **Instant offline races** — random quote, live WPM / accuracy / progress / timer.
-- **30 / 60 / 120 second** race modes.
-- **Ghost races** against your `personal-best`, `last`, or a `random` historical run, animated live.
-- **Local profile & stats** in SQLite — races played/won, best/avg WPM, best/avg accuracy, total chars, total time, full history.
-- **Daily challenge** — same quote for everyone each day, with a local daily leaderboard.
-- **Polished TUI** built on **Textual** + **Rich**, keyboard-only, resize-aware.
-
-## Planned CLI
-
+Just run it:
 ```bash
-typefaster                                   # launch straight into the game
-typefaster race --time 60 --ghost personal-best
-typefaster race --ghost last
-typefaster race --ghost random
+typefaster
+```
+Keyboard-only menu:
+- **Quick Race** — a fresh random quote each time; race your personal-best ghost.
+- **Time Attack** — type for 30 / 60 / 120s (←/→ to change the duration inline).
+- **Practice** — pick a mode/ghost.
+- **Daily Challenge** — same quote for everyone each day, local leaderboard.
+- **Stats / History / Profile / Leaderboard / Settings**.
+
+Live WPM, accuracy, progress, and an animated ghost bar. Backspace corrects
+mistakes (original errors still count, MonkeyType-style). All progress is saved
+locally in SQLite.
+
+Direct commands too:
+```bash
+typefaster race                      # quote race
+typefaster race --mode time --time 60
 typefaster daily
-typefaster profile
-typefaster stats
-typefaster history
+typefaster stats   |   typefaster history
 ```
 
----
+## Play online (multiplayer lobbies)
 
-## Tech stack
+It works out of the box against the public server — **no setup**. From the main
+menu pick **Account** to register/login, then **Play Online**:
 
-**Client (Phase 1):** Python 3.11+, Typer, Rich, Textual, SQLite (stdlib), platformdirs.
-**Server (Phase 2):** FastAPI, asyncio, WebSockets, Pydantic, Redis, Docker Compose.
-
-## Repository layout
-
+```text
+Account      → Register / Login (password, GitHub, or Google)
+Play Online  → ➕ Create a lobby  → share the join code
+             → or type a friend's code + Enter to join
 ```
-typefaster-cli/
-├── client/typefaster/   # CLI app: domain · services · infra · ui · net · assets
-├── server/app/          # FastAPI server: routers · ws · repositories · security
-├── shared/              # shared schemas, WS protocol, scoring, anti-cheat
-├── infra/               # redis.conf · nginx.conf (TLS + WS proxy)
-├── docs/                # architecture, schemas, protocol, deployment, roadmap
-├── tests/               # client unit · integration · UI smoke
-├── scripts/             # quote dataset tooling
-├── docker-compose.yml   # redis + server (+ nginx via --profile proxy)
-├── pyproject.toml · Makefile · README.md
+In the waiting room press **R** to ready; the **server** runs the countdown,
+sends everyone the same quote, shows live progress bars, and scores results
+authoritatively (with anti-cheat). **Esc** leaves.
+
+Prefer the CLI?
+```bash
+typefaster register <name>      # or: typefaster login --github / --google
+typefaster lobby create --name "Friday" --time 60
+typefaster lobby join ABC123
+typefaster leaderboard global   # global | daily | weekly
 ```
 
-See [`docs/architecture.md`](docs/architecture.md) for the full design.
+## Self-host the server (optional)
 
-## Online play (Phase 2)
+The game ships pointing at a public server, but you can run your own:
+```bash
+git clone https://github.com/Anoshor/typefaster-cli && cd typefaster-cli
+cp .env.example .env            # set TYPEFASTER_JWT_SECRET
+make up                         # Redis + FastAPI server on :8000 (Docker)
+typefaster config set-server http://localhost:8000
+```
+Deploy guides: [`docs/deploy-oracle.md`](docs/deploy-oracle.md) (free 24/7 VM) ·
+[`docs/deploy-fly.md`](docs/deploy-fly.md) · TLS + hardening in
+[`docs/SECURITY-REVIEW.md`](docs/SECURITY-REVIEW.md).
 
-Run the server stack (Redis + FastAPI + WebSockets) with Docker:
+## How it works
+
+- **Client**: Python · Typer (CLI) · Textual + Rich (TUI) · SQLite (local
+  progress) · httpx + websockets (online).
+- **Server**: FastAPI · WebSockets · Redis · Pydantic — **server-authoritative**
+  race timing and scoring.
+- Deep dive: [`docs/DEEPDIVE.md`](docs/DEEPDIVE.md) · architecture:
+  [`docs/architecture.md`](docs/architecture.md).
+
+## Develop
 
 ```bash
-cp .env.example .env       # set TYPEFASTER_JWT_SECRET
-make up                    # redis + server on :8000  (make up-proxy adds nginx TLS)
+make install     # editable install + dev deps
+make play        # run it
+make check       # ruff + mypy + pytest
 ```
-
-Then, from the client:
-
-```bash
-typefaster register alice          # create an account
-typefaster login alice
-typefaster lobby create --name "Friday Sprint" --time 60
-typefaster lobby join ABC123       # join a friend's private lobby
-typefaster lobby list              # browse public lobbies
-typefaster leaderboard global      # global | daily | weekly
-typefaster logout
-```
-
-The server is **authoritative**: it controls race start/finish, re-scores every
-result, and runs anti-cheat before writing leaderboards. See the docs:
-
-- [API specification](docs/api-spec.md)
-- [WebSocket protocol](docs/websocket-protocol.md)
-- [Redis schema](docs/redis-schema.md)
-- [Deployment guide (single Linux VM)](docs/deployment.md)
-
-The client points at `http://localhost:8000` by default; set `server_url` in
-`~/.config/typefaster/auth.json` to target a deployed server.
-
-## Development
-
-```bash
-make install   # editable install + dev deps
-make play      # launch the game
-make test      # pytest
-make lint      # ruff
-make typecheck # mypy
-make format    # black + ruff --fix
-make check     # lint + typecheck + test (CI parity)
-```
-
-> **Note on the monorepo layout:** the importable package lives at
-> `client/typefaster`. A normal install (`pip install .`, used by Docker and end
-> users) places it on the path automatically. For local development the
-> `Makefile` exports `PYTHONPATH=client`, so `make play` / `make test` always
-> work. If you invoke tools directly, prefix with `PYTHONPATH=client` (e.g.
-> `PYTHONPATH=client python -m typefaster`).
-
-## Design preferences locked for Phase 1
-
-- **Quotes:** curated public-domain set, tagged `short` / `medium` / `long` for difficulty buckets and 30/60/120s fit.
-- **Backspace:** allowed (MonkeyType-style) — corrections permitted, original errors still count toward accuracy; exposed as a Settings toggle.
+Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT.
+MIT — see [LICENSE](LICENSE). Crafted by **Anoshor Paul**.
