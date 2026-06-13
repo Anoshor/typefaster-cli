@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
+
 from rich.text import Text
 from textual.app import ComposeResult
 from textual.containers import Vertical
@@ -10,6 +12,7 @@ from textual.widgets import OptionList, Static
 from textual.widgets.option_list import Option
 
 from ...domain.models import RaceKind, RaceMode
+from ...net.token_store import Session
 from ...services.race_service import RaceConfig
 
 _TIMES = [30, 60, 120]
@@ -36,6 +39,8 @@ class MainMenu(Screen[None]):
             ("time", self._time_label()),
             ("practice", "Practice"),
             ("daily", "Daily Challenge"),
+            ("online", "🌐 Play Online  (multiplayer lobbies)"),
+            ("account", "🌐 Account / Login"),
             ("stats", "Stats"),
             ("history", "History"),
             ("profile", "Profile"),
@@ -57,10 +62,17 @@ class MainMenu(Screen[None]):
 
     def _tagline(self) -> Text:
         p = self.app.services.profile.get()  # type: ignore[attr-defined]
+        s = Session.load()
+        status = f"online · {s.username}" if s.logged_in else "offline"
         return Text(
-            f"best {p.best_wpm:.0f} wpm  ·  races {p.races_played}  ·  offline mode",
+            f"best {p.best_wpm:.0f} wpm  ·  races {p.races_played}  ·  {status}",
             justify="center",
         )
+
+    def on_screen_resume(self) -> None:
+        # Reflect login changes made in the Account screen.
+        with contextlib.suppress(Exception):
+            self.query_one("#subtitle", Static).update(self._tagline())
 
     def on_mount(self) -> None:
         self.query_one(OptionList).focus()

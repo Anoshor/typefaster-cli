@@ -8,10 +8,12 @@ from ..domain.models import RaceResult
 from ..services.container import App as Services
 from ..services.container import build_app
 from ..services.race_service import RaceConfig, RaceSetup
+from .screens.account import AccountScreen
 from .screens.daily import DailyScreen
 from .screens.help import HelpScreen
 from .screens.history import HistoryScreen
 from .screens.leaderboard import LeaderboardScreen
+from .screens.lobby_browser import LobbyBrowserScreen
 from .screens.main_menu import MainMenu
 from .screens.practice import PracticeScreen
 from .screens.profile import ProfileScreen
@@ -30,6 +32,8 @@ _PANELS = {
     "leaderboard": LeaderboardScreen,
     "settings": SettingsScreen,
     "help": HelpScreen,
+    "account": AccountScreen,
+    "online": LobbyBrowserScreen,
 }
 
 

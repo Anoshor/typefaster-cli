@@ -307,8 +307,12 @@ class OnlineRaceScreen(Screen[None]):
 
     # ── exit ───────────────────────────────────────────────────────────
     def action_leave(self) -> None:
-        # This screen IS the whole online app, so leaving exits cleanly back to
-        # the shell (popping the only screen would leave a blank screen). The
-        # server removes us from the lobby when the WebSocket closes on exit.
+        # Tell the server we're leaving (it also detects the socket close).
         self.run_worker(self._send("LEAVE"), name="leave")
-        self.app.exit()
+        # If launched from the menu (screen underneath), pop back to it;
+        # if standalone (CLI `lobby join`), exit the app — popping the only
+        # screen would leave a blank screen.
+        if len(self.app.screen_stack) > 2:  # base + this (+ any) → safe to pop
+            self.app.pop_screen()
+        else:
+            self.app.exit()
