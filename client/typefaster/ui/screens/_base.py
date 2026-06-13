@@ -20,11 +20,15 @@ class PanelScreen(Screen[None]):
         with Vertical(id="panel-wrap"):
             yield Static(Text(self.title_text, justify="center"), id="title")
             with VerticalScroll():
-                yield Static(self.body())
+                yield Static(self.body(), id="panel-body")
             yield Static("esc back", classes="dim")
 
     def body(self) -> RenderableType:  # pragma: no cover - overridden
         return Text("")
+
+    def on_screen_resume(self) -> None:
+        # Re-query when we return here (e.g. after a race) so data is fresh.
+        self.query_one("#panel-body", Static).update(self.body())
 
     def action_back(self) -> None:
         self.app.pop_screen()

@@ -49,6 +49,11 @@ class MainMenu(Screen[None]):
             yield Static(Text("⌨  T Y P E F A S T E R", justify="center"), id="title")
             yield Static(self._tagline(), id="subtitle")
             yield OptionList(*[Option(label, id=key) for key, label in self._items()])
+            yield Static(
+                Text("crafted by Anoshor Paul", justify="center"),
+                id="byline",
+                classes="dim",
+            )
 
     def _tagline(self) -> Text:
         p = self.app.services.profile.get()  # type: ignore[attr-defined]

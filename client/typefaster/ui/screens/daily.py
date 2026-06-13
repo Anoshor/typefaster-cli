@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import date
+from datetime import UTC, datetime
 
 from rich.console import Group
 from rich.table import Table
@@ -23,14 +23,16 @@ class DailyScreen(Screen[None]):
     ]
 
     def compose(self) -> ComposeResult:
+        day = datetime.now(UTC).date().isoformat()  # UTC — matches how results are filed
         with Vertical(id="panel-wrap"):
-            yield Static(
-                Text(f"DAILY CHALLENGE · {date.today().isoformat()}", justify="center"),
-                id="title",
-            )
+            yield Static(Text(f"DAILY CHALLENGE · {day} (UTC)", justify="center"), id="title")
             with VerticalScroll():
-                yield Static(self._body())
+                yield Static(self._body(), id="panel-body")
             yield Static("⏎ play today's challenge    esc back", classes="dim")
+
+    def on_screen_resume(self) -> None:
+        # Refresh best/attempts/leaderboard after returning from a race.
+        self.query_one("#panel-body", Static).update(self._body())
 
     def _body(self) -> Group:
         svc = self.app.services  # type: ignore[attr-defined]
