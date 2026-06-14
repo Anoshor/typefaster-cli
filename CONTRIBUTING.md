@@ -48,6 +48,25 @@ Quality gates (all must pass):
 - **mypy --strict** — types (the `typefaster` package)
 - **pytest** — tests; add/adjust tests for any behavior change
 
+## Pull request process
+
+`main` is a protected branch — you can't push to it directly. Work on a fork or
+a feature branch and open a PR:
+
+1. **Fork** the repo (or branch, if you're a collaborator) and create a topic
+   branch: `git checkout -b fix/ghost-timing`.
+2. Make your change with tests, then run `make check` locally.
+3. **Open a PR** against `main`. CI runs automatically.
+4. **All checks must be green** — `lint · type · test (3.11/3.12)`,
+   `server lint · test`, and `dependency audit (pip-audit)`.
+5. A **maintainer review is required** (you'll be auto-requested via
+   `CODEOWNERS`), and any review conversations must be resolved before merge.
+6. Keep PRs small and focused; squash-friendly, conventional commit messages
+   help.
+
+Dependency and GitHub-Actions updates are proposed automatically by Dependabot —
+no action needed from contributors.
+
 ## Guidelines
 
 - **Keep the domain pure** and deterministic (time is injected via `Clock`).

@@ -21,14 +21,16 @@ typefaster
 **Homebrew** (macOS / Linux)
 ```bash
 brew install Anoshor/typefaster/typefaster
+# or tap once, then use the short name:
+brew tap anoshor/typefaster && brew install typefaster
 ```
 
-**pipx** (any OS with Python 3.11+) — fastest
+**pipx** (any OS with Python 3.11+) — fastest install
 ```bash
 pipx install typefaster-cli
 ```
 
-Verify: `typefaster version`
+Verify: `typefaster version` · Upgrade: `brew upgrade typefaster` or `pipx upgrade typefaster-cli`
 
 ## Play (offline — no account, no internet)
 
@@ -104,9 +106,11 @@ Deploy guides: [`docs/deploy-oracle.md`](docs/deploy-oracle.md) (free 24/7 VM) �
 ```bash
 make install     # editable install + dev deps
 make play        # run it
-make check       # ruff + mypy + pytest
+make check       # ruff + mypy + pytest  (CI parity)
 ```
-Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions welcome! `main` is protected — fork, branch, and open a PR; CI must
+pass and a maintainer review is required before merge. Full guide:
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
