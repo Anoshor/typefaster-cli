@@ -10,6 +10,8 @@ from typefaster.domain.models import RaceKind, RaceMode
 from typefaster.services.container import build_app
 from typefaster.services.race_service import RaceConfig
 from typefaster.ui.app import TypefasterApp
+from typefaster.ui.screens.account import AccountScreen
+from typefaster.ui.screens.lobby_browser import LobbyBrowserScreen
 from typefaster.ui.screens.main_menu import MainMenu
 from typefaster.ui.screens.race import RaceScreen
 from typefaster.ui.screens.stats import StatsScreen
@@ -40,6 +42,30 @@ async def test_open_stats_panel(services) -> None:  # type: ignore[no-untyped-de
         app.open("stats")
         await pilot.pause()
         assert isinstance(app.screen, StatsScreen)
+        await pilot.press("escape")
+        await pilot.pause()
+        assert isinstance(app.screen, MainMenu)
+
+
+async def test_open_account_panel(services) -> None:  # type: ignore[no-untyped-def]
+    app = TypefasterApp(services=services)
+    async with app.run_test() as pilot:
+        await pilot.pause()
+        app.open("account")
+        await pilot.pause()
+        assert isinstance(app.screen, AccountScreen)
+        await pilot.press("escape")
+        await pilot.pause()
+        assert isinstance(app.screen, MainMenu)
+
+
+async def test_open_online_lobby_panel(services) -> None:  # type: ignore[no-untyped-def]
+    app = TypefasterApp(services=services)
+    async with app.run_test() as pilot:
+        await pilot.pause()
+        app.open("online")
+        await pilot.pause()
+        assert isinstance(app.screen, LobbyBrowserScreen)
         await pilot.press("escape")
         await pilot.pause()
         assert isinstance(app.screen, MainMenu)
