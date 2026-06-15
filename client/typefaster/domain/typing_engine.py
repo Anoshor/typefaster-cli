@@ -37,6 +37,11 @@ class TypingEngine:
         self._total_keystrokes = 0
         self._correct_keystrokes = 0
 
+        # Per-key (case-folded) attempt/miss counts for the typing coach. These
+        # count every keypress, so a mistake counts even if later corrected.
+        self._key_attempts: dict[str, int] = {}
+        self._key_misses: dict[str, int] = {}
+
         self._timeline: list[ReplayPoint] = [ReplayPoint(0, 0.0)]
         self._last_progress_pct = 0.0
 
@@ -56,6 +61,12 @@ class TypingEngine:
         self._total_keystrokes += 1
         if is_correct:
             self._correct_keystrokes += 1
+
+        # Track the *expected* key (case-folded) so the coach can rank weak keys.
+        k = expected.lower()
+        self._key_attempts[k] = self._key_attempts.get(k, 0) + 1
+        if not is_correct:
+            self._key_misses[k] = self._key_misses.get(k, 0) + 1
 
         self._record(t_ms)
 
@@ -94,6 +105,13 @@ class TypingEngine:
     @property
     def correct_keystrokes(self) -> int:
         return self._correct_keystrokes
+
+    @property
+    def key_stats(self) -> dict[str, tuple[int, int]]:
+        """Per-key (attempts, misses), case-folded, for the typing coach."""
+        return {
+            k: (attempts, self._key_misses.get(k, 0)) for k, attempts in self._key_attempts.items()
+        }
 
     @property
     def progress(self) -> float:
@@ -147,4 +165,5 @@ class TypingEngine:
             timeline=self.timeline,
             ghost_kind=ghost_kind,
             ghost_won=ghost_won,
+            key_stats=self.key_stats,
         )

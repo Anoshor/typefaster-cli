@@ -162,7 +162,11 @@ class OnlineRaceScreen(Screen[None]):
             ),
             name="progress",
         )
-        if self._start_ms is not None and elapsed >= self.mode_seconds * 1000 and not self._finished:
+        if (
+            self._start_ms is not None
+            and elapsed >= self.mode_seconds * 1000
+            and not self._finished
+        ):
             self._submit_finish()
 
     def on_key(self, event: events.Key) -> None:
@@ -219,7 +223,9 @@ class OnlineRaceScreen(Screen[None]):
 
     # ── rendering ──────────────────────────────────────────────────────
     def _render_status(self) -> None:
-        self.query_one("#net-status", Static).update(Text.from_markup(self._status, justify="center"))
+        self.query_one("#net-status", Static).update(
+            Text.from_markup(self._status, justify="center")
+        )
 
     def _render_lobby(self, data: dict[str, Any]) -> None:
         name = data.get("name", "Lobby")

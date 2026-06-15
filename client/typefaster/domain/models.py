@@ -135,6 +135,8 @@ class RaceResult:
     # Set when the run is implausible (paste/auto-input) — not recorded.
     suspicious: bool = False
     flags: tuple[str, ...] = ()
+    # Per-key (attempts, misses), folded by case — feeds the typing coach.
+    key_stats: dict[str, tuple[int, int]] = field(default_factory=dict)
 
     @property
     def completed(self) -> bool:
