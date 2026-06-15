@@ -189,6 +189,12 @@ class SQLiteRepository:
                 (key_char, attempts, misses, updated_at),
             )
 
+    def record_key_stats(self, key_stats: dict[str, tuple[int, int]], updated_at: str) -> None:
+        """Standalone per-key update (used by drills, which feed the coach but
+        are not recorded as competitive races)."""
+        with transaction(self._conn):
+            self._bump_key_stats(key_stats, updated_at)
+
     def get_key_stats(self) -> dict[str, tuple[int, int]]:
         rows = self._conn.execute("SELECT key_char, attempts, misses FROM key_stats").fetchall()
         return {r["key_char"]: (r["attempts"], r["misses"]) for r in rows}

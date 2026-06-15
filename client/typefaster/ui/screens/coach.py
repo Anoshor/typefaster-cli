@@ -29,6 +29,16 @@ def _heat_style(accuracy: float) -> str:
 
 class CoachScreen(PanelScreen):
     title_text = "TYPING COACH"
+    BINDINGS = [
+        ("escape", "back", "Back"),
+        ("q", "back", "Back"),
+        ("d", "drill", "Drill weak keys"),
+    ]
+
+    def action_drill(self) -> None:
+        coach = self.app.services.coach  # type: ignore[attr-defined]
+        if coach.enough_data():
+            self.app.start_drill()  # type: ignore[attr-defined]
 
     def body(self) -> RenderableType:
         coach = self.app.services.coach  # type: ignore[attr-defined]
@@ -51,6 +61,8 @@ class CoachScreen(PanelScreen):
             Text(""),
             Text("Finger positioning", style="bold"),
             self._tips(weak),
+            Text(""),
+            Text("press  d  to drill your weak keys", style="bold cyan", justify="center"),
         )
 
     def _weak_table(self, weak: list[KeyAccuracy]) -> Table:

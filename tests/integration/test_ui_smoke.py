@@ -104,6 +104,36 @@ async def test_coach_panel_renders_with_data(services) -> None:  # type: ignore[
         assert isinstance(app.screen, CoachScreen)
 
 
+async def test_coach_drill_launches_race(services) -> None:  # type: ignore[no-untyped-def]
+    from typefaster.domain.models import Quote, RaceKind, RaceResult, ReplayPoint
+
+    services.repo.save_race(
+        result=RaceResult(
+            wpm=60.0,
+            raw_wpm=65.0,
+            accuracy=0.9,
+            correct_chars=90,
+            incorrect_chars=10,
+            progress=1.0,
+            duration_ms=60_000,
+            mode_seconds=0,
+            kind=RaceKind.QUOTE,
+            timeline=[ReplayPoint(0, 0.0), ReplayPoint(60_000, 100.0)],
+            key_stats={"a": (40, 12), "s": (30, 1), "f": (25, 0)},
+        ),
+        quote=Quote(ext_id="seed", text="seed text", source="t"),
+        started_at="2026-06-07T10:00:00",
+    )
+    app = TypefasterApp(services=services)
+    async with app.run_test() as pilot:
+        await pilot.pause()
+        app.open("coach")
+        await pilot.pause()
+        await pilot.press("d")
+        await pilot.pause()
+        assert isinstance(app.screen, RaceScreen)
+
+
 async def test_open_online_lobby_panel(services) -> None:  # type: ignore[no-untyped-def]
     app = TypefasterApp(services=services)
     async with app.run_test() as pilot:

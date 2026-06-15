@@ -77,6 +77,13 @@ class TypefasterApp(App[None]):
         self._last_config = config
         self.push_screen(RaceScreen(setup), lambda result: self._after_race(setup, result))
 
+    def start_drill(self) -> None:
+        """Launch a coach drill weighted toward the player's weakest keys."""
+        weak = [k.key for k in self.services.coach.weakest_keys()]
+        setup = self.services.race.prepare_drill(weak)
+        self._last_config = None  # drills regenerate each time, not via "again"
+        self.push_screen(RaceScreen(setup), lambda result: self._after_race(setup, result))
+
     def _after_race(self, setup: RaceSetup, result: RaceResult | None) -> None:
         if result is None:
             return  # race quit — return to whatever is underneath
