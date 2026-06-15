@@ -118,6 +118,20 @@ class RedisRepository:
             await self.r.expire(key, window_seconds)
         return n
 
+    async def incr_ws_connections(self, ip: str) -> int:
+        """Count a new WebSocket connection for an IP, returning the live total.
+        A safety TTL refreshes on each connect so a crashed process can't leak a
+        permanently-elevated count."""
+        key = f"ws:conn:{ip}"
+        n = int(await self.r.incr(key))
+        await self.r.expire(key, 3600)
+        return n
+
+    async def decr_ws_connections(self, ip: str) -> None:
+        key = f"ws:conn:{ip}"
+        if int(await self.r.decr(key)) <= 0:
+            await self.r.delete(key)
+
     # ── sessions ───────────────────────────────────────────────────────
     async def create_session(self, jti: str, username: str, ttl_seconds: int) -> None:
         await self.r.set(keys.session(jti), username, ex=ttl_seconds)
