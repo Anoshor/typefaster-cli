@@ -35,6 +35,23 @@ def test_prepare_and_finish_persists(repo) -> None:  # type: ignore[no-untyped-d
     assert repo.count_races() == 1
 
 
+def test_modifiers_transform_target_text(repo) -> None:  # type: ignore[no-untyped-def]
+    svc = RaceService(repo, words_only=True)
+    setup = svc.prepare(kind=RaceKind.QUOTE)
+    # words_only ⇒ only lowercase letters and single spaces in what you type.
+    assert setup.target_text == setup.target_text.lower()
+    assert all(c.isalpha() or c == " " for c in setup.target_text)
+    # The original quote is still persisted unchanged.
+    assert setup.quote.text != "" and setup.quote.text is not None
+
+
+def test_set_modifiers_applies_live(repo) -> None:  # type: ignore[no-untyped-def]
+    svc = RaceService(repo)  # starts with no modifiers
+    svc.set_modifiers(lowercase_only=False, words_only=True)
+    modified = svc.prepare(kind=RaceKind.QUOTE).target_text
+    assert all(c.isalpha() or c == " " for c in modified)
+
+
 def test_ghost_unavailable_before_any_race(repo) -> None:  # type: ignore[no-untyped-def]
     ghosts = GhostService(repo)
     with pytest.raises(GhostUnavailableError):

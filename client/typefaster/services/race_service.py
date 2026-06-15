@@ -16,6 +16,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime
 
 from ..domain.models import Ghost, GhostKind, Quote, RaceKind, RaceMode, RaceResult
+from ..domain.text_modifiers import apply_modifiers
 from ..infra import quote_loader
 from ..infra.repository import Repository
 from .ghost_service import GhostService
@@ -55,10 +56,32 @@ class RaceSummary:
 
 
 class RaceService:
-    def __init__(self, repo: Repository, *, allow_backspace: bool = True) -> None:
+    def __init__(
+        self,
+        repo: Repository,
+        *,
+        allow_backspace: bool = True,
+        lowercase_only: bool = False,
+        words_only: bool = False,
+    ) -> None:
         self._repo = repo
         self._ghosts = GhostService(repo)
         self._allow_backspace = allow_backspace
+        self._lowercase_only = lowercase_only
+        self._words_only = words_only
+
+    def set_modifiers(self, *, lowercase_only: bool, words_only: bool) -> None:
+        """Update the active text modifiers live (e.g. from the Settings screen)
+        so a toggle applies to the next race without restarting the app."""
+        self._lowercase_only = lowercase_only
+        self._words_only = words_only
+
+    def _modify(self, text: str) -> str:
+        """Apply the active text modifiers to what the player will type. The
+        original quote is still persisted; only the target text changes. Ghosts
+        stay percentage-based, so they still render over modified text (a
+        modified run just isn't apples-to-apples with an unmodified ghost)."""
+        return apply_modifiers(text, lowercase=self._lowercase_only, words_only=self._words_only)
 
     def prepare(
         self,
@@ -93,7 +116,7 @@ class RaceService:
 
         return RaceSetup(
             quote=quote,
-            target_text=quote.text,
+            target_text=self._modify(quote.text),
             kind=RaceKind.QUOTE,
             mode=mode,
             ghost=ghost,
@@ -109,7 +132,7 @@ class RaceService:
         text = _stream_text(target_chars)
         return RaceSetup(
             quote=_TIME_QUOTE,
-            target_text=text,
+            target_text=self._modify(text),
             kind=RaceKind.TIME,
             mode=mode,
             ghost=None,  # ghosts are a QUOTE-mode feature

@@ -20,6 +20,9 @@ class Settings:
     allow_backspace: bool = True
     default_ghost: str = "personal-best"
     sound: bool = False
+    # MonkeyType-style text modifiers (applied to the text you type).
+    lowercase_only: bool = False
+    words_only: bool = False
 
     @classmethod
     def load(cls, path: Path | None = None) -> Settings:

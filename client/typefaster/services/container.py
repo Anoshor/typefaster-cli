@@ -34,7 +34,12 @@ def build_app(db_path: Path | str | None = None) -> App:
     return App(
         settings=settings,
         repo=repo,
-        race=RaceService(repo, allow_backspace=settings.allow_backspace),
+        race=RaceService(
+            repo,
+            allow_backspace=settings.allow_backspace,
+            lowercase_only=settings.lowercase_only,
+            words_only=settings.words_only,
+        ),
         profile=ProfileService(repo),
         stats=StatsService(repo),
         daily=DailyService(repo),
