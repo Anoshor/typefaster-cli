@@ -9,6 +9,7 @@ from ..services.container import App as Services
 from ..services.container import build_app
 from ..services.race_service import RaceConfig, RaceSetup
 from .screens.account import AccountScreen
+from .screens.coach import CoachScreen
 from .screens.daily import DailyScreen
 from .screens.help import HelpScreen
 from .screens.history import HistoryScreen
@@ -27,6 +28,7 @@ _PANELS = {
     "practice": PracticeScreen,
     "daily": DailyScreen,
     "stats": StatsScreen,
+    "coach": CoachScreen,
     "history": HistoryScreen,
     "profile": ProfileScreen,
     "leaderboard": LeaderboardScreen,

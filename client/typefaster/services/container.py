@@ -7,6 +7,7 @@ from pathlib import Path
 
 from ..infra.config import Settings
 from ..infra.sqlite_repository import SQLiteRepository
+from .coach_service import CoachService
 from .daily_service import DailyService
 from .ghost_service import GhostService
 from .profile_service import ProfileService
@@ -23,6 +24,7 @@ class App:
     stats: StatsService
     daily: DailyService
     ghosts: GhostService
+    coach: CoachService
 
     def close(self) -> None:
         self.repo.close()
@@ -44,4 +46,5 @@ def build_app(db_path: Path | str | None = None) -> App:
         stats=StatsService(repo),
         daily=DailyService(repo),
         ghosts=GhostService(repo),
+        coach=CoachService(repo),
     )
