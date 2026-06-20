@@ -278,7 +278,7 @@ class OnlineRaceScreen(Screen[None]):
                 str(i),
                 f"{row.get('username', '?')}{flag}",
                 f"{row.get('wpm', 0):.0f}",
-                f"{row.get('accuracy', 0) * 100:.0f}%",
+                f"{row.get('accuracy', 0) * 100:.1f}%",
             )
         self.query_one("#net-status", Static).update(
             Text("RACE COMPLETE", justify="center", style="bold green")
