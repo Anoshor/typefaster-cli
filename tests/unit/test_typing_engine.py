@@ -53,6 +53,37 @@ def test_backspace_corrects_buffer_but_not_accuracy() -> None:
     assert eng.live_accuracy() == pytest.approx(3 / 4)
 
 
+def test_key_stats_count_attempts_and_misses() -> None:
+    eng = TypingEngine("cat")
+    eng.type_char("c", 0)
+    eng.type_char("x", 100)  # missed the 'a'
+    eng.type_char("t", 200)
+    # key 'a' was attempted once and missed once; 'c'/'t' clean.
+    assert eng.key_stats["a"] == (1, 1)
+    assert eng.key_stats["c"] == (1, 0)
+    assert eng.key_stats["t"] == (1, 0)
+
+
+def test_key_stats_count_corrected_mistakes() -> None:
+    """A fumble counts as a miss even if backspaced and fixed."""
+    eng = TypingEngine("cat", allow_backspace=True)
+    eng.type_char("c", 0)
+    eng.type_char("x", 100)  # wrong at 'a'
+    eng.backspace(150)
+    eng.type_char("a", 200)  # corrected: 'a' attempted twice now
+    eng.type_char("t", 300)
+    attempts, misses = eng.key_stats["a"]
+    assert attempts == 2 and misses == 1
+
+
+def test_key_stats_fold_case() -> None:
+    eng = TypingEngine("Hi")
+    eng.type_char("H", 0)
+    eng.type_char("i", 100)
+    assert "h" in eng.key_stats  # 'H' folded to 'h'
+    assert "H" not in eng.key_stats
+
+
 def test_backspace_disabled_is_noop() -> None:
     eng = TypingEngine("ab", allow_backspace=False)
     eng.type_char("a", 0)

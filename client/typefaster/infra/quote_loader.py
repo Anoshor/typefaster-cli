@@ -42,6 +42,19 @@ def quotes_by_difficulty(difficulty: Difficulty) -> list[Quote]:
     return [q for q in all_quotes() if q.difficulty == difficulty]
 
 
+@lru_cache(maxsize=1)
+def corpus_words() -> tuple[str, ...]:
+    """Distinct lowercase alphabetic words from the quote corpus, for building
+    typing drills. Cached since the corpus is static."""
+    seen: set[str] = set()
+    for quote in all_quotes():
+        for raw in quote.text.split():
+            word = "".join(c for c in raw if c.isalpha()).lower()
+            if 2 <= len(word) <= 12:
+                seen.add(word)
+    return tuple(sorted(seen))
+
+
 def daily_quote(day: date | None = None) -> Quote:
     """Deterministically pick the same quote for everyone on a given UTC day."""
     quotes = all_quotes()

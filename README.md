@@ -43,7 +43,13 @@ Keyboard-only menu:
 - **Time Attack** — type for 30 / 60 / 120s (←/→ to change the duration inline).
 - **Practice** — pick a mode/ghost.
 - **Daily Challenge** — same quote for everyone each day, local leaderboard.
+- **🎯 Typing Coach** — see the keys you miss most, a per-key accuracy heatmap, and
+  finger-position tips; press **d** to launch a drill weighted toward your weak
+  keys. All computed locally — no account, no internet, no AI service.
 - **Stats / History / Profile / Leaderboard / Settings**.
+
+**Practice modes (MonkeyType-style):** in **Settings**, toggle **Lowercase only**
+or **Words only** (pure a–z, no punctuation or numbers) to strip the text down.
 
 Live WPM, accuracy, progress, and an animated ghost bar. Backspace corrects
 mistakes (original errors still count, MonkeyType-style). All progress is saved
