@@ -6,10 +6,12 @@ satisfies the same protocol.
 
 from __future__ import annotations
 
+from datetime import date
 from typing import Protocol
 
 from ..domain.models import (
     DailyChallenge,
+    Difficulty,
     Profile,
     Quote,
     RaceKind,
@@ -30,6 +32,9 @@ class Repository(Protocol):
     def wipe(self) -> None: ...
 
     # quotes
+    def random_quote(self) -> Quote: ...
+    def daily_quote(self, day: date | None = None) -> Quote: ...
+    def random_quote_by_difficulty(self, difficulty: Difficulty) -> Quote: ...
     def upsert_quote(self, quote: Quote) -> int: ...
 
     # races
