@@ -87,7 +87,7 @@ async def start(provider: str, settings: SettingsDep) -> dict[str, Any]:
     }
 
 
-@router.post("/{provider}/poll")
+@router.post("/{provider}/poll", dependencies=[Depends(rate_limiter("oauth_poll", 90, 60))])
 async def poll(
     provider: str, body: PollBody, settings: SettingsDep, repo: RepoDep
 ) -> dict[str, Any]:

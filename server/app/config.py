@@ -16,6 +16,13 @@ class Settings(BaseSettings):
     countdown_seconds: int = 3
     max_players_per_lobby: int = 8
 
+    # Abuse / DDoS hardening (app-layer). All per-IP unless noted; tune via env.
+    global_rate_limit: int = 120  # max HTTP requests per IP per window
+    global_rate_window: int = 60  # seconds
+    ws_max_connections_per_ip: int = 10  # concurrent lobby sockets per IP
+    ws_max_messages_per_window: int = 60  # messages per connection per window
+    ws_message_window_seconds: int = 10  # → ~6 msg/s sustained per connection
+
     # OAuth device-flow login (all free). Empty => that provider is disabled.
     github_client_id: str = ""
     google_client_id: str = ""
