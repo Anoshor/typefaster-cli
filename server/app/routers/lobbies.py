@@ -4,22 +4,29 @@ from __future__ import annotations
 
 import secrets
 
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from typefaster_shared.dto import CreateLobbyRequest, LobbySummary
 from typefaster_shared.events import LobbyState
 
-from ..deps import CurrentUser, RepoDep, SettingsDep
+from ..deps import CurrentUser, RepoDep, SettingsDep, rate_limiter
 
 router = APIRouter(prefix="/lobbies", tags=["lobbies"])
 
 _ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # no ambiguous chars
+# Cap lobby creation per IP to stop spam (auth-gated, but still abusable).
+_create_limit = Depends(rate_limiter("lobby_create", limit=12, window_seconds=60))
 
 
 def _new_code() -> str:
     return "".join(secrets.choice(_ALPHABET) for _ in range(6))
 
 
-@router.post("", response_model=LobbySummary, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "",
+    response_model=LobbySummary,
+    status_code=status.HTTP_201_CREATED,
+    dependencies=[_create_limit],
+)
 async def create_lobby(
     body: CreateLobbyRequest, username: CurrentUser, repo: RepoDep
 ) -> LobbySummary:

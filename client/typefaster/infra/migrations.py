@@ -78,6 +78,19 @@ _MIGRATIONS: list[tuple[int, str]] = [
         CREATE INDEX IF NOT EXISTS idx_race_kind_wpm ON race(race_kind, mode_seconds, wpm DESC);
         """,
     ),
+    (
+        3,
+        # Running per-key (case-folded) attempt/miss aggregate for the typing
+        # coach. One row per key; upserted after every race. Local-only.
+        """
+        CREATE TABLE IF NOT EXISTS key_stats (
+            key_char   TEXT PRIMARY KEY,
+            attempts   INTEGER NOT NULL DEFAULT 0,
+            misses     INTEGER NOT NULL DEFAULT 0,
+            updated_at TEXT NOT NULL
+        );
+        """,
+    ),
 ]
 
 

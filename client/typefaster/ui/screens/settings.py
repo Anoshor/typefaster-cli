@@ -47,6 +47,8 @@ class SettingsScreen(Screen[None]):
             ),
             ("default_ghost", f"Default ghost   ‹ {s.default_ghost} ›"),
             ("sound", f"Sound (bell)    ‹ {'on' if s.sound else 'off'} ›"),
+            ("lowercase_only", f"Lowercase only  ‹ {'on' if s.lowercase_only else 'off'} ›"),
+            ("words_only", f"Words only      ‹ {'on' if s.words_only else 'off'} ›"),
         ]
         for key, label in rows:
             ol.add_option(Option(label, id=key))
@@ -64,7 +66,16 @@ class SettingsScreen(Screen[None]):
             s.default_ghost = self._cycle(self._GHOSTS, s.default_ghost)
         elif key == "sound":
             s.sound = not s.sound
+        elif key == "lowercase_only":
+            s.lowercase_only = not s.lowercase_only
+        elif key == "words_only":
+            s.words_only = not s.words_only
         s.save()
+        # Apply text-modifier changes to the live race service immediately.
+        if key in ("lowercase_only", "words_only"):
+            self.app.services.race.set_modifiers(  # type: ignore[attr-defined]
+                lowercase_only=s.lowercase_only, words_only=s.words_only
+            )
         idx = event.option_index
         self._refresh()
         self.query_one(OptionList).highlighted = idx

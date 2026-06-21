@@ -42,6 +42,7 @@ class MainMenu(Screen[None]):
             ("online", "🌐 Play Online  (multiplayer lobbies)"),
             ("account", "🌐 Account / Login"),
             ("stats", "Stats"),
+            ("coach", "🎯 Typing Coach"),
             ("history", "History"),
             ("profile", "Profile"),
             ("leaderboard", "Leaderboard"),

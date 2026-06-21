@@ -93,8 +93,7 @@ def _oauth_login(provider: str) -> None:
         deadline = time.time() + int(start.get("expires_in", 900))
 
         console.print(
-            f"\n  Open [bold underline]{uri}[/]\n"
-            f"  Enter code: [bold cyan]{code}[/]\n"
+            f"\n  Open [bold underline]{uri}[/]\n" f"  Enter code: [bold cyan]{code}[/]\n"
         )
         with contextlib.suppress(Exception):
             webbrowser.open(uri)

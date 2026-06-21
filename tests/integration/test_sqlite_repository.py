@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 
 from typefaster.domain.models import GhostKind, Quote, RaceKind, RaceResult, ReplayPoint
@@ -29,6 +30,37 @@ def _result(
         ghost_kind=GhostKind.PERSONAL_BEST if ghost_won is not None else None,
         ghost_won=ghost_won,
     )
+
+
+def _result_with_keys(key_stats: dict[str, tuple[int, int]]) -> RaceResult:
+    return replace(_result(), key_stats=key_stats)
+
+
+def test_key_stats_aggregate_across_races(repo: SQLiteRepository, quote: Quote) -> None:
+    repo.save_race(
+        result=_result_with_keys({"a": (10, 2), "b": (5, 0)}),
+        quote=quote,
+        started_at="2026-06-07T10:00:00",
+    )
+    repo.save_race(
+        result=_result_with_keys({"a": (4, 1), "c": (3, 3)}),
+        quote=quote,
+        started_at="2026-06-07T10:05:00",
+    )
+    stats = repo.get_key_stats()
+    assert stats["a"] == (14, 3)  # summed across both races
+    assert stats["b"] == (5, 0)
+    assert stats["c"] == (3, 3)
+
+
+def test_wipe_clears_key_stats(repo: SQLiteRepository, quote: Quote) -> None:
+    repo.save_race(
+        result=_result_with_keys({"a": (10, 2)}),
+        quote=quote,
+        started_at="2026-06-07T10:00:00",
+    )
+    repo.wipe()
+    assert repo.get_key_stats() == {}
 
 
 def test_profile_created_on_init(repo: SQLiteRepository) -> None:

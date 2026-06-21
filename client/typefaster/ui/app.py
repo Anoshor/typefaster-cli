@@ -9,6 +9,7 @@ from ..services.container import App as Services
 from ..services.container import build_app
 from ..services.race_service import RaceConfig, RaceSetup
 from .screens.account import AccountScreen
+from .screens.coach import CoachScreen
 from .screens.daily import DailyScreen
 from .screens.help import HelpScreen
 from .screens.history import HistoryScreen
@@ -27,6 +28,7 @@ _PANELS = {
     "practice": PracticeScreen,
     "daily": DailyScreen,
     "stats": StatsScreen,
+    "coach": CoachScreen,
     "history": HistoryScreen,
     "profile": ProfileScreen,
     "leaderboard": LeaderboardScreen,
@@ -73,6 +75,13 @@ class TypefasterApp(App[None]):
             daily=config.daily,
         )
         self._last_config = config
+        self.push_screen(RaceScreen(setup), lambda result: self._after_race(setup, result))
+
+    def start_drill(self) -> None:
+        """Launch a coach drill weighted toward the player's weakest keys."""
+        weak = [k.key for k in self.services.coach.weakest_keys()]
+        setup = self.services.race.prepare_drill(weak)
+        self._last_config = None  # drills regenerate each time, not via "again"
         self.push_screen(RaceScreen(setup), lambda result: self._after_race(setup, result))
 
     def _after_race(self, setup: RaceSetup, result: RaceResult | None) -> None:

@@ -15,7 +15,7 @@ from functools import lru_cache
 from importlib.resources import files
 
 from ..domain.errors import NoQuotesError
-from ..domain.models import Difficulty, Quote
+from ..domain.models import Difficulty
 
 
 @lru_cache(maxsize=1)
@@ -25,10 +25,6 @@ def _load_raw() -> list[dict[str, str]]:
     if not data:
         raise NoQuotesError("quotes.json is empty")
     return data
-
-
-def all_quotes() -> list[Quote]:
-    return [Quote(ext_id=q["id"], text=q["text"], source=q.get("source")) for q in _load_raw()]
 
 
 def seed_quotes(conn: sqlite3.Connection) -> int:

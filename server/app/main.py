@@ -10,6 +10,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from redis.asyncio import from_url
 
+from .abuse import GlobalRateLimitMiddleware, MessageRateLimiter, client_ip
 from .config import get_settings
 from .deps import resolve_token
 from .logging_config import configure_logging
@@ -48,6 +49,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(title="TYPEFASTER Server", version="0.1.0", lifespan=lifespan)
+    # Order: CORS outermost, then the per-IP flood guard (added last = runs first).
+    app.add_middleware(GlobalRateLimitMiddleware)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[o.strip() for o in settings.cors_origins.split(",")],
@@ -62,28 +65,44 @@ def create_app() -> FastAPI:
 
     @app.websocket("/ws/lobby/{code}")
     async def lobby_ws(websocket: WebSocket, code: str) -> None:
+        settings = websocket.app.state.settings
         token = websocket.query_params.get("token", "")
         repo = RedisRepository(websocket.app.state.redis)
-        username = await resolve_token(token, repo, websocket.app.state.settings)
+        username = await resolve_token(token, repo, settings)
         if username is None:
             await websocket.close(code=4401)  # unauthorized
             return
 
-        await websocket.accept()
-        hub: Hub = websocket.app.state.hub
-        joined = await hub.join(code, username, websocket)
-        if not joined:
-            await websocket.close(code=4404)  # lobby not found
+        # Cap concurrent sockets per IP so one host can't exhaust connections.
+        ip = client_ip(websocket.client.host if websocket.client else None)
+        if await repo.incr_ws_connections(ip) > settings.ws_max_connections_per_ip:
+            await repo.decr_ws_connections(ip)
+            await websocket.close(code=4429)  # too many connections
             return
 
         try:
-            while True:
-                raw = await websocket.receive_json()
-                await hub.handle(code, username, raw)
-        except WebSocketDisconnect:
-            pass
+            await websocket.accept()
+            hub: Hub = websocket.app.state.hub
+            joined = await hub.join(code, username, websocket)
+            if not joined:
+                await websocket.close(code=4404)  # lobby not found
+                return
+            limiter = MessageRateLimiter(
+                settings.ws_max_messages_per_window, settings.ws_message_window_seconds
+            )
+            try:
+                while True:
+                    raw = await websocket.receive_json()
+                    if not limiter.allow():
+                        await websocket.close(code=4429)  # message flood
+                        break
+                    await hub.handle(code, username, raw)
+            except WebSocketDisconnect:
+                pass
+            finally:
+                await hub.leave(code, username)
         finally:
-            await hub.leave(code, username)
+            await repo.decr_ws_connections(ip)
 
     return app
 

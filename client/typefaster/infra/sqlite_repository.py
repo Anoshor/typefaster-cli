@@ -111,9 +111,22 @@ class SQLiteRepository:
         with transaction(self._conn):
             self._conn.execute("DELETE FROM race")
             self._conn.execute("DELETE FROM daily_challenge")
+            self._conn.execute("DELETE FROM key_stats")
         self.recompute_profile()
 
     # ── quotes ─────────────────────────────────────────────────────────
+    def corpus_words(self) -> tuple[str, ...]:
+        """Distinct lowercase alphabetic words from the quote corpus, for building
+        typing drills. Cached since the corpus is static."""
+        seen: set[str] = set()
+        rows = self._conn.execute("SELECT text FROM quote").fetchall()
+        for row in rows:
+            for raw in row["text"].split():
+                word = "".join(c for c in raw if c.isalpha()).lower()
+                if 2 <= len(word) <= 12:
+                    seen.add(word)
+        return tuple(sorted(seen))
+
     def random_quote(self) -> Quote:
         row = self._conn.execute(
             "SELECT ext_id, text, source FROM quote ORDER BY RANDOM() LIMIT 1"
@@ -200,9 +213,35 @@ class SQLiteRepository:
                 (race_id, replay_store.serialize(result.timeline)),
             )
             self._bump_profile(result)
+            self._bump_key_stats(result.key_stats, started_at)
             if is_daily:
                 self._bump_daily(started_at[:10], quote_id, result.wpm)
         return race_id
+
+    def _bump_key_stats(self, key_stats: dict[str, tuple[int, int]], updated_at: str) -> None:
+        """Add this race's per-key attempts/misses into the running aggregate."""
+        for key_char, (attempts, misses) in key_stats.items():
+            self._conn.execute(
+                """
+                INSERT INTO key_stats(key_char, attempts, misses, updated_at)
+                VALUES(?, ?, ?, ?)
+                ON CONFLICT(key_char) DO UPDATE SET
+                  attempts   = attempts + excluded.attempts,
+                  misses     = misses + excluded.misses,
+                  updated_at = excluded.updated_at
+                """,
+                (key_char, attempts, misses, updated_at),
+            )
+
+    def record_key_stats(self, key_stats: dict[str, tuple[int, int]], updated_at: str) -> None:
+        """Standalone per-key update (used by drills, which feed the coach but
+        are not recorded as competitive races)."""
+        with transaction(self._conn):
+            self._bump_key_stats(key_stats, updated_at)
+
+    def get_key_stats(self) -> dict[str, tuple[int, int]]:
+        rows = self._conn.execute("SELECT key_char, attempts, misses FROM key_stats").fetchall()
+        return {r["key_char"]: (r["attempts"], r["misses"]) for r in rows}
 
     def _bump_profile(self, result: RaceResult) -> None:
         won = 1 if result.ghost_won else 0

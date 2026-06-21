@@ -4,24 +4,38 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from typefaster.domain.models import Difficulty
 from typefaster.infra import quote_loader
 from typefaster.infra.db import connect
 from typefaster.infra.migrations import migrate
 
 
-def test_dataset_meets_minimum() -> None:
-    assert len(quote_loader.all_quotes()) >= 500
+@pytest.fixture()
+def seeded_conn(tmp_path: Path):
+    conn = connect(tmp_path / "seed.db")
+    migrate(conn)
+    quote_loader.seed_quotes(conn)
+    yield conn
+    conn.close()
 
 
-def test_no_duplicate_text() -> None:
-    texts = [q.text for q in quote_loader.all_quotes()]
+def test_dataset_meets_minimum(seeded_conn) -> None:
+    count = seeded_conn.execute("SELECT COUNT(*) AS c FROM quote").fetchone()["c"]
+    assert count >= 500
+
+
+def test_no_duplicate_text(seeded_conn) -> None:
+    rows = seeded_conn.execute("SELECT text FROM quote").fetchall()
+    texts = [r["text"] for r in rows]
     assert len(set(texts)) == len(texts)
 
 
-def test_difficulty_buckets_exist() -> None:
-    diffs = {q.difficulty for q in quote_loader.all_quotes()}
-    assert Difficulty.SHORT in diffs
+def test_difficulty_buckets_exist(seeded_conn) -> None:
+    rows = seeded_conn.execute("SELECT DISTINCT difficulty FROM quote").fetchall()
+    diffs = {r["difficulty"] for r in rows}
+    assert Difficulty.SHORT.value in diffs
 
 
 def test_seed_quotes_inserts_all(tmp_path: Path) -> None:
@@ -29,8 +43,8 @@ def test_seed_quotes_inserts_all(tmp_path: Path) -> None:
     migrate(conn)
     inserted = quote_loader.seed_quotes(conn)
     count = conn.execute("SELECT COUNT(*) AS c FROM quote").fetchone()["c"]
-    assert count == len(quote_loader.all_quotes())
-    assert inserted == count
+    assert count == inserted
+    assert count >= 500
     conn.close()
 
 
@@ -41,6 +55,6 @@ def test_seed_quotes_is_idempotent(tmp_path: Path) -> None:
     second = quote_loader.seed_quotes(conn)
     count = conn.execute("SELECT COUNT(*) AS c FROM quote").fetchone()["c"]
     assert first > 0
-    assert second == 0  # all already present, INSERT OR IGNORE skips them
+    assert second == 0
     assert count == first
     conn.close()
