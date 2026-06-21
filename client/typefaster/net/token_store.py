@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import base64
 import json
+import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -26,6 +28,29 @@ def _is_ephemeral_host(url: str) -> bool:
     return host.endswith(".trycloudflare.com")
 
 
+def _is_token_expired(token: str | None) -> bool:
+    """Check if JWT token is expired by decoding and comparing exp claim.
+    Frontend validation for UX; server always validates for security.
+    Expects JWT format: header.payload.signature (3 parts, 2 dots).
+    Non-JWT tokens are assumed valid."""
+    if not token:
+        return True
+    parts = token.split(".")
+    if len(parts) != 3:
+        return False
+    try:
+        payload = parts[1]
+        decoded = json.loads(base64.urlsafe_b64decode(payload + "=="))
+        if not isinstance(decoded, dict):
+            return True
+        exp = decoded.get("exp")
+        if exp is None or not isinstance(exp, (int, float)):
+            return False
+        return time.time() > exp
+    except Exception:
+        return True
+
+
 @dataclass(slots=True)
 class Session:
     server_url: str = DEFAULT_SERVER_URL
@@ -34,7 +59,9 @@ class Session:
 
     @property
     def logged_in(self) -> bool:
-        return bool(self.token)
+        if not self.token:
+            return False
+        return not _is_token_expired(self.token)
 
     @classmethod
     def load(cls, path: Path | None = None) -> Session:

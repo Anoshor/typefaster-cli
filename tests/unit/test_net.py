@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import base64
+import json
+import time
 from pathlib import Path
 
 import httpx
@@ -10,6 +13,17 @@ import pytest
 import typefaster.net.api as api_mod
 from typefaster.net.api import ApiClient, ws_url
 from typefaster.net.token_store import DEFAULT_SERVER_URL, Session
+
+
+def _make_jwt(exp: int | None = None) -> str:
+    """Create a test JWT with optional expiration time."""
+    header = base64.urlsafe_b64encode(json.dumps({"alg": "HS256"}).encode()).decode().rstrip("=")
+    payload_data = {"sub": "test"}
+    if exp is not None:
+        payload_data["exp"] = exp
+    payload = base64.urlsafe_b64encode(json.dumps(payload_data).encode()).decode().rstrip("=")
+    signature = "test_signature"
+    return f"{header}.{payload}.{signature}"
 
 
 def test_session_defaults(tmp_path: Path) -> None:
@@ -52,6 +66,40 @@ def test_session_keeps_custom_host(tmp_path: Path) -> None:
     path = tmp_path / "auth.json"
     Session(server_url="https://play.example.com").save(path)
     assert Session.load(path).server_url == "https://play.example.com"
+
+
+def test_session_logged_in_with_valid_jwt() -> None:
+    """Valid (non-expired) JWT token should mark user as logged in."""
+    future_time = int(time.time()) + 3600
+    token = _make_jwt(exp=future_time)
+    session = Session(token=token)
+    assert session.logged_in
+
+
+def test_session_logged_in_with_expired_jwt() -> None:
+    """Expired JWT token should mark user as not logged in."""
+    past_time = int(time.time()) - 3600
+    token = _make_jwt(exp=past_time)
+    session = Session(token=token)
+    assert not session.logged_in
+
+
+def test_session_logged_in_with_non_jwt_token() -> None:
+    """Non-JWT token (no dots) should be considered valid."""
+    session = Session(token="simple_token")
+    assert session.logged_in
+
+
+def test_session_logged_in_with_malformed_jwt() -> None:
+    """Malformed JWT (bad base64/JSON) should be considered expired."""
+    session = Session(token="header.!!!invalid!!!.signature")
+    assert not session.logged_in
+
+
+def test_session_not_logged_in_without_token() -> None:
+    """Session without token should not be logged in."""
+    session = Session(token=None)
+    assert not session.logged_in
 
 
 def _mock_httpx(monkeypatch: pytest.MonkeyPatch, dead_host: str) -> None:
