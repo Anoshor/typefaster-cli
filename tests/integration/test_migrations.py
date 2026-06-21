@@ -6,6 +6,7 @@ from pathlib import Path
 
 from typefaster.infra.db import connect
 from typefaster.infra.migrations import migrate
+from typefaster.infra.quote_loader import seed_quotes
 
 
 def test_migrate_fresh_db(tmp_path: Path) -> None:
@@ -46,4 +47,13 @@ def test_migrate_v3_on_existing_v2_db(tmp_path: Path) -> None:
     assert migrate(conn) == 3
     tables = {r["name"] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert "key_stats" in tables
+    conn.close()
+
+
+def test_seed_populates_quote_table(tmp_path: Path) -> None:
+    conn = connect(tmp_path / "m.db")
+    migrate(conn)
+    seed_quotes(conn)
+    count = conn.execute("SELECT COUNT(*) AS c FROM quote").fetchone()["c"]
+    assert count > 0
     conn.close()

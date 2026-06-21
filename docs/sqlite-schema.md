@@ -30,7 +30,7 @@ CREATE TABLE profile (
     total_time_ms INTEGER NOT NULL DEFAULT 0
 );
 
--- ── quotes that have been raced (cache of text used) ──
+-- ── quotes pool (seeded from bundled quotes.json on startup) ──
 CREATE TABLE quote (
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
     ext_id    TEXT UNIQUE,        -- stable id from quotes.json

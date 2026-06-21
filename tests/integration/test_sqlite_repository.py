@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import replace
+from datetime import date
 
 from typefaster.domain.models import GhostKind, Quote, RaceKind, RaceResult, ReplayPoint
 from typefaster.infra.sqlite_repository import SQLiteRepository
@@ -153,6 +154,23 @@ def test_recompute_profile_matches(repo: SQLiteRepository, quote: Quote) -> None
     assert after.races_played == before.races_played
     assert after.best_wpm == before.best_wpm
     assert after.total_chars == before.total_chars
+
+
+def test_random_quote_returns_quote(repo: SQLiteRepository) -> None:
+    q = repo.random_quote()
+    assert isinstance(q, Quote)
+    assert len(q.text) > 0
+
+
+def test_daily_quote_is_deterministic(repo: SQLiteRepository) -> None:
+    day = date(2026, 6, 7)
+    assert repo.daily_quote(day).ext_id == repo.daily_quote(day).ext_id
+
+
+def test_daily_quote_differs_across_days(repo: SQLiteRepository) -> None:
+    a = repo.daily_quote(date(2026, 6, 7))
+    b = repo.daily_quote(date(2026, 6, 8))
+    assert a.ext_id != b.ext_id
 
 
 def test_daily_flow(repo: SQLiteRepository, quote: Quote) -> None:

@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import sqlite3
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 
+from ..domain.errors import NoQuotesError
 from ..domain.models import (
     DailyChallenge,
+    Difficulty,
     GhostKind,
     Profile,
     Quote,
@@ -20,6 +22,7 @@ from . import replay_store
 from .db import connect, transaction
 from .migrations import migrate
 from .paths import db_path
+from .quote_loader import seed_quotes
 
 # Ghosts and leaderboards ignore runs above this (paste/auto-input artifacts).
 MAX_PLAUSIBLE_WPM = 300.0
@@ -35,6 +38,7 @@ class SQLiteRepository:
     def __init__(self, path: Path | str | None = None) -> None:
         self._conn = connect(path or db_path())
         migrate(self._conn)
+        seed_quotes(self._conn)
         self._ensure_profile()
 
     # ── lifecycle ──────────────────────────────────────────────────────
@@ -111,6 +115,46 @@ class SQLiteRepository:
         self.recompute_profile()
 
     # ── quotes ─────────────────────────────────────────────────────────
+    def corpus_words(self) -> tuple[str, ...]:
+        """Distinct lowercase alphabetic words from the quote corpus, for building
+        typing drills. Cached since the corpus is static."""
+        seen: set[str] = set()
+        rows = self._conn.execute("SELECT text FROM quote").fetchall()
+        for row in rows:
+            for raw in row["text"].split():
+                word = "".join(c for c in raw if c.isalpha()).lower()
+                if 2 <= len(word) <= 12:
+                    seen.add(word)
+        return tuple(sorted(seen))
+
+    def random_quote(self) -> Quote:
+        row = self._conn.execute(
+            "SELECT ext_id, text, source FROM quote ORDER BY RANDOM() LIMIT 1"
+        ).fetchone()
+        if row is None:
+            raise NoQuotesError("no quotes in database")
+        return Quote(ext_id=row["ext_id"], text=row["text"], source=row["source"])
+
+    def daily_quote(self, day: date | None = None) -> Quote:
+        target = day or date.today()
+        row = self._conn.execute(
+            "SELECT ext_id, text, source FROM quote ORDER BY id "
+            "LIMIT 1 OFFSET (? % (SELECT COUNT(*) FROM quote))",
+            (target.toordinal(),),
+        ).fetchone()
+        if row is None:
+            raise NoQuotesError("no quotes in database")
+        return Quote(ext_id=row["ext_id"], text=row["text"], source=row["source"])
+
+    def random_quote_by_difficulty(self, difficulty: Difficulty) -> Quote:
+        row = self._conn.execute(
+            "SELECT ext_id, text, source FROM quote WHERE difficulty = ? ORDER BY RANDOM() LIMIT 1",
+            (difficulty.value,),
+        ).fetchone()
+        if row is None:
+            raise NoQuotesError(f"no quotes for difficulty {difficulty}")
+        return Quote(ext_id=row["ext_id"], text=row["text"], source=row["source"])
+
     def upsert_quote(self, quote: Quote) -> int:
         self._conn.execute(
             """

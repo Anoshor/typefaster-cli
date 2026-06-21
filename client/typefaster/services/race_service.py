@@ -18,7 +18,6 @@ from datetime import UTC, date, datetime
 from ..domain.drills import build_drill
 from ..domain.models import Ghost, GhostKind, Quote, RaceKind, RaceMode, RaceResult
 from ..domain.text_modifiers import apply_modifiers
-from ..infra import quote_loader
 from ..infra.repository import Repository
 from .ghost_service import GhostService
 
@@ -105,18 +104,18 @@ class RaceService:
     ) -> RaceSetup:
         ghost: Ghost | None = None
         if daily:
-            quote = quote_loader.daily_quote(date.today())
+            quote = self._repo.daily_quote(date.today())
             # Daily ghost = your best run on *today's* quote (same text), if any.
             ghost = self._ghosts.best_for_quote(quote.ext_id)
         elif ghost_kind is not None:
             # Explicit "vs PB/Last/Random": race the ghost's exact text for a
             # fair head-to-head.
             ghost = self._ghosts.try_load(ghost_kind)
-            quote = ghost.quote if ghost and ghost.quote else quote_loader.random_quote()
+            quote = ghost.quote if ghost and ghost.quote else self._repo.random_quote()
         else:
             # Quick race: a fresh random quote every time. Attach a ghost only
             # if you've raced this exact quote before.
-            quote = quote_loader.random_quote()
+            quote = self._repo.random_quote()
             ghost = self._ghosts.best_for_quote(quote.ext_id)
 
         return RaceSetup(
@@ -134,7 +133,7 @@ class RaceService:
         # Enough text that even a very fast typist won't run out before time:
         # ~300 WPM * 5 chars = 1500 chars/min, plus a safety buffer.
         target_chars = int(mode.value / 60 * 1500) + 600
-        text = _stream_text(target_chars)
+        text = self._stream_text(target_chars)
         return RaceSetup(
             quote=_TIME_QUOTE,
             target_text=self._modify(text),
@@ -149,7 +148,7 @@ class RaceService:
     def prepare_drill(self, weak_keys: list[str], *, length: int = 30) -> RaceSetup:
         """Build a practice race whose text is weighted toward the player's weak
         keys. Drills feed the coach's per-key stats but never set records."""
-        text = build_drill(weak_keys, list(quote_loader.corpus_words()), length=length)
+        text = build_drill(weak_keys, list(self._repo.corpus_words()), length=length)
         return RaceSetup(
             quote=Quote(ext_id=_DRILL_EXT_ID, text=text, source="Drill"),
             target_text=text,
@@ -189,13 +188,12 @@ class RaceService:
             return best[0] if best else 0.0
         return max(self._repo.best_by_mode(RaceKind.TIME).values(), default=0.0)
 
-
-def _stream_text(min_chars: int) -> str:
-    """Concatenate random quotes into one continuous block of >= min_chars."""
-    parts: list[str] = []
-    total = 0
-    while total < min_chars:
-        q = quote_loader.random_quote()
-        parts.append(q.text)
-        total += len(q.text) + 1
-    return " ".join(parts)
+    def _stream_text(self, min_chars: int) -> str:
+        """Concatenate random quotes into one continuous block of >= min_chars."""
+        parts: list[str] = []
+        total = 0
+        while total < min_chars:
+            q = self._repo.random_quote()
+            parts.append(q.text)
+            total += len(q.text) + 1
+        return " ".join(parts)

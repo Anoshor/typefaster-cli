@@ -62,7 +62,7 @@ Phase 2 server (FastAPI/Redis) a matter of providing new adapters for the same p
 
 ### Infrastructure (adapters)
 - **SQLiteRepository** — the only Phase 1 `Repository` implementation. Parameterized SQL, no ORM.
-- **QuoteLoader** — loads `assets/quotes.json`, random selection, deterministic daily pick.
+- **QuoteLoader** — seeds `assets/quotes.json` into the `quote` table on startup (idempotent). Runtime selection (random, daily, by difficulty) is handled by `SQLiteRepository`.
 - **ReplayStore** — serialize/deserialize replay timelines (`[{"t":1000,"p":5}, ...]`).
 - **Clock** — `SystemClock` for prod, `FakeClock` for tests (keeps the engine pure).
 - **ConfigStore** — persisted settings (theme, default time, backspace toggle, ghost default).
@@ -83,7 +83,7 @@ typefaster race --time 60 --ghost personal-best
    Typer cmd  ──► RaceService.start(mode=60, ghost="personal-best")
         │              │
         │         GhostService.load("personal-best") ──► Repository
-        │         QuoteLoader.random()              ──► assets/quotes.json
+        │         Repository.random_quote()         ──► SQLite quote table
         │              │
         ▼              ▼
    Textual RaceScreen  ◄── runs TypingEngine, feeds keystrokes
