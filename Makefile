@@ -8,7 +8,7 @@ PYTHON ?= python3
 # regardless of how the editable install resolves paths on a given OS.
 export PYTHONPATH := client
 
-.PHONY: help install dev play test test-cov lint format typecheck check seed clean up down
+.PHONY: help install install-server dev play test test-cov lint format typecheck check seed clean up down
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -21,7 +21,7 @@ dev: install ## Alias for a full dev environment setup
 	@echo "Dev environment ready. Run 'make play' to start the game."
 
 play: ## Launch the game (offline)
-	typefaster
+	python -m typefaster
 
 test: ## Run the test suite
 	pytest
@@ -30,11 +30,11 @@ test-cov: ## Run tests with coverage report
 	pytest --cov=typefaster --cov-report=term-missing
 
 lint: ## Ruff lint
-	ruff check client tests
+	ruff check client tests server
 
 format: ## Auto-format (black) + autofix (ruff)
-	black client tests
-	ruff check --fix client tests
+	black client tests server
+	ruff check --fix client tests server
 
 typecheck: ## MyPy static type check
 	mypy
@@ -49,6 +49,10 @@ clean: ## Remove caches and build artifacts
 	find . -type d -name __pycache__ -prune -exec rm -rf {} +
 
 # ── Online stack (Phase 2) ─────────────────────────────────────────────
+install-server: ## Install server + shared deps in editable mode
+	$(PYTHON) -m pip install -e shared/
+	$(PYTHON) -m pip install -e "server/[dev]"
+
 up: ## Start the online stack (redis + server) via Docker Compose
 	docker compose up -d --build
 
