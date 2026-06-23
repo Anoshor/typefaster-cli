@@ -24,7 +24,8 @@ Requires **Python 3.11+** (the repo is developed against 3.12).
 ```bash
 git clone https://github.com/Anoshor/typefaster-cli && cd typefaster-cli
 python3.12 -m venv .venv && source .venv/bin/activate
-make install            # editable install + dev deps
+make install            # client editable install + dev deps
+make install-server     # server editable install + dev deps
 make play               # launch the game
 ```
 
@@ -39,7 +40,7 @@ Run the full check suite — CI runs the same thing:
 
 ```bash
 make check              # ruff + mypy + pytest   (client)
-cd server && pip install -e ".[dev]" && pytest   # if you touched the server
+make server-test        # if you touched the server
 ```
 
 Quality gates (all must pass):

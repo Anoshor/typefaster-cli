@@ -285,7 +285,7 @@ class Hub:
             await self._reset_for_next(code)
         except asyncio.CancelledError:  # lobby destroyed mid-race
             raise
-        except Exception:  # noqa: BLE001
+        except Exception:
             log.exception("race loop failed for lobby %s", code)
 
     async def _reset_for_next(self, code: str) -> None:
