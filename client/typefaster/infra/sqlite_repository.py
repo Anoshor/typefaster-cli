@@ -327,6 +327,13 @@ class SQLiteRepository:
         return self._replay_for("AND q.ext_id = ? ORDER BY r.wpm DESC", (ext_id,))
 
     # ── daily ──────────────────────────────────────────────────────────
+    def daily_days_played(self) -> list[str]:
+        """ISO days (YYYY-MM-DD, ascending) on which the daily was attempted."""
+        rows = self._conn.execute(
+            "SELECT day FROM daily_challenge WHERE attempts > 0 ORDER BY day"
+        ).fetchall()
+        return [r["day"] for r in rows]
+
     def get_or_create_daily(self, day: str, quote: Quote) -> DailyChallenge:
         quote_id = self.upsert_quote(quote)
         row = self._conn.execute("SELECT * FROM daily_challenge WHERE day = ?", (day,)).fetchone()
