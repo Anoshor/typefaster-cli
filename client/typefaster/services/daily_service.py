@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 
 from ..domain.models import DailyChallenge, RaceRecord
 from ..infra import quote_loader
@@ -32,3 +32,15 @@ class DailyService:
     def leaderboard(self, day: date | None = None, limit: int = 20) -> list[RaceRecord]:
         day = day or _utc_today()
         return self._repo.daily_leaderboard(day.isoformat(), limit=limit)
+
+    def streak(self, day: date | None = None) -> int:
+        """Consecutive daily-challenge days ending today (or yesterday, if today
+        hasn't been played yet — the streak is still alive, just not extended)."""
+        today = day or _utc_today()
+        played = set(self._repo.daily_days_played())
+        cursor = today if today.isoformat() in played else today - timedelta(days=1)
+        n = 0
+        while cursor.isoformat() in played:
+            n += 1
+            cursor -= timedelta(days=1)
+        return n

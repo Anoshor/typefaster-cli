@@ -71,11 +71,13 @@ class SettingsScreen(Screen[None]):
         elif key == "words_only":
             s.words_only = not s.words_only
         s.save()
-        # Apply text-modifier changes to the live race service immediately.
+        # Apply gameplay-affecting changes to the live race service immediately.
         if key in ("lowercase_only", "words_only"):
             self.app.services.race.set_modifiers(  # type: ignore[attr-defined]
                 lowercase_only=s.lowercase_only, words_only=s.words_only
             )
+        elif key == "allow_backspace":
+            self.app.services.race.set_backspace(s.allow_backspace)  # type: ignore[attr-defined]
         idx = event.option_index
         self._refresh()
         self.query_one(OptionList).highlighted = idx

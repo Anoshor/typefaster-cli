@@ -134,6 +134,15 @@ async def test_coach_drill_launches_race(services) -> None:  # type: ignore[no-u
         assert isinstance(app.screen, RaceScreen)
 
 
+def test_results_top_missed_formatting() -> None:
+    from typefaster.ui.screens.results import _top_missed
+
+    stats = {"e": (20, 4), "r": (15, 2), "t": (10, 1), "a": (30, 0), " ": (40, 5)}
+    out = _top_missed(stats)
+    assert out == "␣ ×5 · E ×4 · R ×2"  # worst first, space rendered as ␣, top 3 only
+    assert _top_missed({"a": (10, 0)}) == ""  # clean race → no row
+
+
 async def test_open_online_lobby_panel(services) -> None:  # type: ignore[no-untyped-def]
     app = TypefasterApp(services=services)
     async with app.run_test() as pilot:

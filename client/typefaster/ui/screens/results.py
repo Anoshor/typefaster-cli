@@ -14,6 +14,16 @@ from ...services.race_service import RaceSetup, RaceSummary
 from ..widgets import bigtext
 
 
+def _top_missed(key_stats: dict[str, tuple[int, int]], limit: int = 3) -> str:
+    """Format this race's most-fumbled keys, worst first — e.g. 'E x4 . R x2' (rendered with multiplication signs)."""
+    worst = sorted(
+        ((k, m) for k, (_, m) in key_stats.items() if m > 0),
+        key=lambda km: km[1],
+        reverse=True,
+    )[:limit]
+    return " · ".join(f"{'␣' if k == ' ' else k.upper()} ×{m}" for k, m in worst)
+
+
 class ResultsScreen(Screen[str]):
     """Shows the outcome. Dismisses with an action string: 'again' or 'menu'.
 
@@ -55,6 +65,12 @@ class ResultsScreen(Screen[str]):
             table.add_row("Chars", f"{r.correct_chars} correct · {r.incorrect_chars} wrong")
             table.add_row("Completion", f"{r.progress * 100:.0f}%")
             table.add_row("Time", f"{r.duration_ms / 1000:.1f}s")
+            missed = _top_missed(r.key_stats)
+            if missed:
+                table.add_row(
+                    "Missed keys",
+                    f"[bold red]{missed}[/]  [grey58]· 🎯 Typing Coach can drill these[/]",
+                )
             if self.summary and self.summary.new_personal_best:
                 table.add_row(
                     "Personal best",

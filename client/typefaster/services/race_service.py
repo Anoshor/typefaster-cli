@@ -13,7 +13,7 @@ Two race kinds (see ``RaceKind``):
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import UTC, date, datetime
+from datetime import UTC, datetime
 
 from ..domain.drills import build_drill
 from ..domain.models import Ghost, GhostKind, Quote, RaceKind, RaceMode, RaceResult
@@ -81,6 +81,10 @@ class RaceService:
         self._lowercase_only = lowercase_only
         self._words_only = words_only
 
+    def set_backspace(self, allow: bool) -> None:
+        """Apply the backspace setting live, same contract as set_modifiers."""
+        self._allow_backspace = allow
+
     def _modify(self, text: str) -> str:
         """Apply the active text modifiers to what the player will type. The
         original quote is still persisted; only the target text changes. Ghosts
@@ -105,7 +109,9 @@ class RaceService:
     ) -> RaceSetup:
         ghost: Ghost | None = None
         if daily:
-            quote = quote_loader.daily_quote(date.today())
+            # UTC, matching DailyService/DailyScreen — otherwise a local-midnight
+            # window would race a different quote than the challenge records.
+            quote = quote_loader.daily_quote(datetime.now(UTC).date())
             # Daily ghost = your best run on *today's* quote (same text), if any.
             ghost = self._ghosts.best_for_quote(quote.ext_id)
         elif ghost_kind is not None:

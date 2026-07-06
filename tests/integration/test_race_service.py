@@ -126,3 +126,18 @@ def test_daily_setup_uses_daily_quote(repo) -> None:  # type: ignore[no-untyped-
     svc = RaceService(repo)
     setup = svc.prepare(kind=RaceKind.QUOTE, daily=True)
     assert setup.is_daily is True
+
+
+def test_daily_race_quote_matches_daily_service(repo) -> None:  # type: ignore[no-untyped-def]
+    """The daily race and the Daily screen must agree on the quote (both UTC)."""
+    from typefaster.services.daily_service import DailyService
+
+    race_quote = RaceService(repo).prepare(kind=RaceKind.QUOTE, daily=True).quote
+    screen_quote = DailyService(repo).today().quote
+    assert race_quote.ext_id == screen_quote.ext_id
+
+
+def test_set_backspace_applies_live(repo) -> None:  # type: ignore[no-untyped-def]
+    svc = RaceService(repo)  # defaults to allow_backspace=True
+    svc.set_backspace(False)
+    assert svc.prepare(kind=RaceKind.QUOTE).allow_backspace is False

@@ -47,6 +47,10 @@ class DailyScreen(Screen[None]):
             f"\nYour best today: {challenge.best_wpm:.0f} wpm  ·  attempts {challenge.attempts}\n",
             style="bold",
         )
+        streak = svc.daily.streak()
+        if streak:
+            unit = "day" if streak == 1 else "days"
+            quote.append(f"🔥 Streak: {streak} {unit}\n", style="bold yellow")
 
         table = Table(title="Local daily leaderboard", title_style="bold", expand=True)
         table.add_column("#", justify="right")
